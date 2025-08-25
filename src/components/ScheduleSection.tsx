@@ -182,23 +182,6 @@ const ScheduleSection = () => {
                 </div>
               </FlipCard3D>
             ))}
-            
-            {/* Call to Action */}
-            <div className="bg-theater-burgundy/20 backdrop-blur-sm rounded-xl p-6 border border-theater-gold/20 text-center">
-              <h4 className="font-cinzel text-xl text-theater-gold mb-3">
-                Готовы открыть свой секрет?
-              </h4>
-              <p className="font-inter text-theater-light-gold mb-6">
-                Забронируйте билет прямо сейчас и станьте частью магического представления
-              </p>
-              <TheaterButton 
-                variant="gold"
-                size="lg"
-                href="https://qwitikеts.ru"
-              >
-                Забронировать билет
-              </TheaterButton>
-            </div>
           </div>
         </div>
 
