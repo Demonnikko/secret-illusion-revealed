@@ -26,13 +26,13 @@ type TheaterButtonProps = ButtonProps | LinkProps;
 const getVariantStyles = (variant: string) => {
   switch (variant) {
     case 'gold':
-      return "bg-gradient-gold text-black hover:shadow-gold-glow border-2 border-theater-gold/50 hover:border-theater-gold hover:scale-105 font-cinzel font-semibold";
+      return "bg-gradient-gold text-black hover:shadow-gold-glow border-2 border-theater-gold/50 hover:border-theater-gold hover:scale-105 font-inter font-semibold";
     case 'burgundy':
-      return "bg-theater-burgundy text-theater-light-gold border-2 border-theater-burgundy hover:bg-theater-burgundy/80 hover:shadow-mystical hover:scale-105 font-cinzel";
+      return "bg-theater-burgundy text-theater-light-gold border-2 border-theater-burgundy hover:bg-theater-burgundy/80 hover:shadow-mystical hover:scale-105 font-inter";
     case 'transparent':
-      return "bg-transparent text-theater-light-gold border-2 border-theater-gold/30 hover:border-theater-gold hover:bg-theater-gold/10 hover:scale-105 font-cinzel";
+      return "bg-transparent text-theater-light-gold border-2 border-theater-gold/30 hover:border-theater-gold hover:bg-theater-gold/10 hover:scale-105 font-inter";
     default:
-      return "bg-gradient-gold text-black hover:shadow-gold-glow border-2 border-theater-gold/50 hover:border-theater-gold hover:scale-105 font-cinzel font-semibold";
+      return "bg-gradient-gold text-black hover:shadow-gold-glow border-2 border-theater-gold/50 hover:border-theater-gold hover:scale-105 font-inter font-semibold";
   }
 };
 

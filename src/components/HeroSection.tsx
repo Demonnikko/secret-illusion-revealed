@@ -240,7 +240,6 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
                 onClick={() => onSectionChange('about')}
                 className="min-w-56 hover:shadow-mystical transition-all duration-500 hover:animate-micro-wiggle"
               >
-                <Play className="w-6 h-6 mr-3" />
                 Смотреть промо
               </TheaterButton>
             </MagicalTooltip>
@@ -255,19 +254,27 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
                 onClick={() => onSectionChange('private-events')}
                 className="hover:animate-micro-bounce"
               >
-                <Gift className="w-5 h-5 mr-2" />
                 Частные мероприятия
               </TheaterButton>
             </MagicalTooltip>
             
             <MagicalTooltip content="Изучите искусство иллюзий в нашей школе">
               <TheaterButton 
-                variant="burgundy"
+                variant="transparent"
                 onClick={() => onSectionChange('school')}
                 className="hover:animate-micro-shake"
               >
-                <span className="text-xl mr-2">🎩</span>
                 Школа фокусов
+              </TheaterButton>
+            </MagicalTooltip>
+            
+            <MagicalTooltip content="Получите специальную скидку на билеты">
+              <TheaterButton 
+                variant="transparent"
+                href="https://v0-recreate-ui-screenshot-xi-azure.vercel.app/"
+                className="hover:animate-micro-bounce"
+              >
+                Получить скидку
               </TheaterButton>
             </MagicalTooltip>
           </div>
