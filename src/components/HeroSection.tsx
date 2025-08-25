@@ -18,7 +18,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const [confetti, setConfetti] = useState<Array<{ id: number; color: string; left: number; delay: number }>>([]);
   
-  const { getParallaxProps } = useParallax();
+  const parallaxOffset = useParallax(0.3);
   const { getMouseParallax } = useMouseTracker();
   const theaterToast = useTheaterToast();
   const { playSound } = useTheaterSounds();
@@ -77,12 +77,15 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
       {/* Magic Particles Background with Parallax */}
       <div 
         className="absolute inset-0 magic-particles"
-        {...getParallaxProps(-0.5)}
+        style={{ transform: `translateY(${parallaxOffset}px)` }}
       ></div>
       
       {/* Stage Lighting Effects with Parallax */}
-      <div className="absolute inset-0 stage-lighting" {...getParallaxProps(-0.3)}>
-        <div 
+      <div 
+        className="absolute inset-0 stage-lighting" 
+        style={{ transform: `translateY(${parallaxOffset * 0.5}px)` }}
+      >
+        <div
           className="absolute top-10 left-1/4 w-40 h-40 bg-theater-spotlight/30 rounded-full blur-3xl animate-magic-pulse" 
           style={getMouseParallax(10)}
         />

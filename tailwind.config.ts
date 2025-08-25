@@ -104,6 +104,16 @@ export default {
 				'gradient-stage': 'var(--gradient-stage)',
 				'gradient-curtain': 'var(--gradient-curtain)',
 				'gradient-gold': 'var(--gradient-gold)',
+				'gradient-radial': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
+			},
+			perspective: {
+				'1000': '1000px',
+			},
+			transformStyle: {
+				'preserve-3d': 'preserve-3d',
+			},
+			backfaceVisibility: {
+				'hidden': 'hidden',
 			},
 			boxShadow: {
 				'mystical': 'var(--shadow-mystical)',
@@ -279,6 +289,14 @@ export default {
 				'micro-glow': {
 					'0%, 100%': { boxShadow: '0 0 5px rgba(255, 215, 0, 0.3)' },
 					'50%': { boxShadow: '0 0 20px rgba(255, 215, 0, 0.8)' }
+				},
+				'flip-horizontal': {
+					'0%': { transform: 'rotateY(0deg)' },
+					'100%': { transform: 'rotateY(180deg)' },
+				},
+				'flip-vertical': {
+					'0%': { transform: 'rotateX(0deg)' },
+					'100%': { transform: 'rotateX(180deg)' },
 				}
 			},
 			animation: {
@@ -303,7 +321,9 @@ export default {
 				'micro-bounce': 'micro-bounce 0.3s ease-out',
 				'micro-shake': 'micro-shake 0.5s ease-in-out',
 				'micro-wiggle': 'micro-wiggle 0.4s ease-in-out',
-				'micro-glow': 'micro-glow 1s ease-in-out'
+				'micro-glow': 'micro-glow 1s ease-in-out',
+				'flip-horizontal': 'flip-horizontal 0.6s ease-in-out',
+				'flip-vertical': 'flip-vertical 0.6s ease-in-out'
 			}
 		}
 	},

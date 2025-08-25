@@ -16,6 +16,8 @@ import AnimatedSection from '@/components/AnimatedSection';
 import ScrollProgress from '@/components/ScrollProgress';
 import AmbientSounds from '@/components/AmbientSounds';
 import SoundToggle from '@/components/SoundToggle';
+import ParticleSystem from '@/components/ParticleSystem';
+import ParallaxSection from '@/components/ParallaxSection';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { useResponsiveFonts } from '@/hooks/useResponsive';
 import { Toaster } from '@/components/ui/toaster';
@@ -43,6 +45,12 @@ const Index = () => {
       
       {/* Interactive Particles Layer */}
       <InteractiveParticles />
+      
+      {/* Falling Particles System */}
+      <ParticleSystem 
+        density={20} 
+        types={['rose', 'star', 'sparkle']} 
+      />
       
       {/* Ambient Theater Sounds */}
       <AmbientSounds />
