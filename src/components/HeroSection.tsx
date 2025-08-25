@@ -151,91 +151,46 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
           <div className="mb-8">
             <MagicalTooltip content="Кликните 5 раз для открытия секретного послания!" position="top">
               <div 
-                className="cursor-pointer group inline-block relative"
+                className="cursor-pointer group inline-block"
                 onClick={handleLogoClick}
               >
-                {/* Ancient Lock SVG */}
-                <div className="relative animate-mystical-float">
-                  <svg
-                    width="80"
-                    height="90"
-                    viewBox="0 0 32 36"
+                {/* Simple Clean Lock SVG */}
+                <svg
+                  width="80"
+                  height="90"
+                  viewBox="0 0 32 36"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="text-theater-gold group-hover:scale-110 transition-all duration-500"
+                >
+                  {/* Lock body */}
+                  <rect 
+                    x="6" y="14" width="20" height="18" rx="3" 
+                    fill="currentColor" 
+                    stroke="currentColor" 
+                    strokeWidth="1"
+                  />
+                  <rect x="8" y="16" width="16" height="14" rx="2" fill="rgba(0,0,0,0.4)"/>
+                  
+                  {/* Lock shackle */}
+                  <path 
+                    d="M10 14V10C10 6.68629 12.6863 4 16 4C19.3137 4 22 6.68629 22 10V14" 
+                    stroke="currentColor" 
+                    strokeWidth="2.5" 
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="text-theater-gold drop-shadow-2xl group-hover:scale-110 transition-all duration-500 animate-glow-pulse"
-                  >
-                    {/* Lock body with breathing animation */}
-                    <rect 
-                      x="6" y="14" width="20" height="18" rx="3" 
-                      fill="currentColor" 
-                      stroke="currentColor" 
-                      strokeWidth="1"
-                      className="animate-pulse"
-                    />
-                    <rect x="8" y="16" width="16" height="14" rx="2" fill="rgba(0,0,0,0.4)"/>
-                    
-                    {/* Lock shackle with gentle sway */}
-                    <g className="animate-micro-wiggle origin-center">
-                      <path 
-                        d="M10 14V10C10 6.68629 12.6863 4 16 4C19.3137 4 22 6.68629 22 10V14" 
-                        stroke="currentColor" 
-                        strokeWidth="2.5" 
-                        fill="none"
-                        strokeLinecap="round"
-                      />
-                    </g>
-                    
-                    {/* Keyhole with intense glow effect */}
-                    <g className="animate-pulse">
-                      <circle cx="16" cy="23" r="2.5" fill="#FFD700" className="drop-shadow-lg animate-glow-pulse"/>
-                      <rect x="15.2" y="23" width="1.6" height="4" rx="0.8" fill="#FFD700" className="animate-glow-pulse"/>
-                      
-                      {/* Multiple keyhole glow layers */}
-                      <circle cx="16" cy="23" r="4" fill="none" stroke="#FFD700" strokeWidth="0.8" opacity="0.8" className="animate-ping"/>
-                      <circle cx="16" cy="23" r="6" fill="none" stroke="#FFD700" strokeWidth="0.5" opacity="0.5" className="animate-ping" style={{ animationDelay: '0.3s' }}/>
-                      <circle cx="16" cy="23" r="8" fill="none" stroke="#FFD700" strokeWidth="0.3" opacity="0.3" className="animate-ping" style={{ animationDelay: '0.6s' }}/>
-                    </g>
-                    
-                    {/* Decorative elements with subtle animation */}
-                    <g className="animate-sparkle">
-                      <circle cx="10" cy="18" r="0.8" fill="currentColor" opacity="0.7"/>
-                      <circle cx="22" cy="18" r="0.8" fill="currentColor" opacity="0.7"/>
-                      <circle cx="10" cy="28" r="0.8" fill="currentColor" opacity="0.7"/>
-                      <circle cx="22" cy="28" r="0.8" fill="currentColor" opacity="0.7"/>
-                    </g>
-                  </svg>
+                    strokeLinecap="round"
+                  />
                   
-                  {/* Magical light rays from keyhole - more intense */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                    {[...Array(12)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-1 h-12 bg-gradient-to-t from-theater-gold via-theater-light-gold to-transparent animate-pulse origin-bottom"
-                        style={{
-                          transform: `rotate(${i * 30}deg) translateY(-20px)`,
-                          animationDelay: `${i * 0.15}s`,
-                          opacity: 0.8,
-                          filter: 'blur(0.5px)'
-                        }}
-                      />
-                    ))}
-                  </div>
+                  {/* Simple keyhole */}
+                  <circle cx="16" cy="23" r="2.5" fill="#FFD700"/>
+                  <rect x="15.2" y="23" width="1.6" height="4" rx="0.8" fill="#FFD700"/>
                   
-                  {/* Enhanced sparkles around lock - more dynamic */}
-                  {[...Array(12)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="absolute w-2 h-2 bg-theater-light-gold rounded-full animate-sparkle"
-                      style={{
-                        top: `${50 + 45 * Math.sin((i * Math.PI * 2) / 12)}%`,
-                        left: `${50 + 45 * Math.cos((i * Math.PI * 2) / 12)}%`,
-                        animationDelay: `${i * 0.2}s`,
-                        boxShadow: '0 0 12px currentColor',
-                        animationDuration: `${2 + Math.random() * 2}s`
-                      }}
-                    />
-                  ))}
-                </div>
+                  {/* Decorative elements */}
+                  <circle cx="10" cy="18" r="0.8" fill="currentColor" opacity="0.7"/>
+                  <circle cx="22" cy="18" r="0.8" fill="currentColor" opacity="0.7"/>
+                  <circle cx="10" cy="28" r="0.8" fill="currentColor" opacity="0.7"/>
+                  <circle cx="22" cy="28" r="0.8" fill="currentColor" opacity="0.7"/>
+                </svg>
               </div>
             </MagicalTooltip>
           </div>
