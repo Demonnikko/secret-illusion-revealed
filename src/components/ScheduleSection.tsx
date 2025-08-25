@@ -1,7 +1,5 @@
-import { Calendar, Clock, MapPin, Ticket } from 'lucide-react';
+import { Calendar, Clock, MapPin, Ticket, ExternalLink } from 'lucide-react';
 import TheaterButton from './TheaterButton';
-import FlipCard3D from './FlipCard3D';
-import ParallaxSection from './ParallaxSection';
 
 const ScheduleSection = () => {
   const shows = [
@@ -35,180 +33,101 @@ const ScheduleSection = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-theater-stage py-20 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-theater-gold mb-6">
+    <div className="min-h-screen bg-black py-16 px-4 md:px-6">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="font-cinzel text-3xl md:text-4xl lg:text-5xl font-bold text-theater-gold mb-6">
             Афиша
           </h2>
-          <div className="w-24 h-1 bg-gradient-gold mx-auto rounded-full" />
-          <p className="font-inter text-lg text-theater-light-gold mt-6 max-w-2xl mx-auto">
-            Выберите удобную дату и забронируйте билеты на незабываемое театральное представление
+          <div className="w-24 h-1 bg-theater-gold mx-auto rounded-full mb-6" />
+          <p className="font-inter text-lg text-theater-light-gold max-w-2xl mx-auto">
+            Выберите удобную дату и забронируйте билеты
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Show Poster */}
-          <div className="order-2 lg:order-1">
-            <ParallaxSection speed={0.3} className="relative group">
-              <div className="aspect-[3/4] bg-theater-burgundy/30 rounded-xl border border-theater-gold/20 shadow-mystical overflow-hidden">
-                <div className="h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-curtain">
-                  {/* Poster Content */}
-                  <div className="space-y-6">
-                    <div className="w-20 h-20 bg-theater-gold/20 rounded-full flex items-center justify-center mb-4">
-                      <span className="text-3xl">🎭</span>
+        {/* Shows List */}
+        <div className="space-y-6">
+          {shows.map((show) => (
+            <div 
+              key={show.id}
+              className="bg-theater-stage/20 border border-theater-gold/20 rounded-xl p-6 hover:border-theater-gold/40 transition-all duration-300"
+            >
+              <div className="grid md:grid-cols-2 gap-6 items-center">
+                {/* Show Info */}
+                <div className="space-y-4">
+                  <div className="flex flex-wrap gap-4 text-sm md:text-base">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-theater-gold" />
+                      <span className="text-theater-light-gold">{show.date}</span>
                     </div>
-                    
-                    <h3 className="font-cinzel text-4xl font-bold text-theater-gold">
-                      ШОУ СЕКРЕТ
-                    </h3>
-                    
-                    <div className="space-y-2 text-theater-light-gold">
-                      <p className="font-inter text-lg">Авторское иллюзионное шоу</p>
-                      <p className="font-cinzel text-xl font-medium">Дмитрия Костюка</p>
-                    </div>
-                    
-                    <div className="pt-4 border-t border-theater-gold/20">
-                      <p className="font-inter text-theater-light-gold mb-2">Продолжительность:</p>
-                      <p className="font-cinzel text-lg text-theater-gold">2 часа + антракт</p>
-                    </div>
-                    
-                    <div className="bg-theater-burgundy/40 p-3 rounded-lg">
-                      <p className="font-inter text-sm text-theater-light-gold">
-                        Возрастное ограничение: 18+
-                      </p>
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-theater-gold" />
+                      <span className="text-theater-light-gold">{show.time}</span>
                     </div>
                   </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <MapPin className="w-4 h-4 text-theater-gold mt-0.5 flex-shrink-0" />
+                    <div className="text-sm md:text-base">
+                      <p className="text-theater-gold font-medium">{show.venue}</p>
+                      <p className="text-theater-light-gold">{show.address}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-4 text-sm">
+                    <div className="flex items-center gap-1">
+                      <Ticket className="w-4 h-4 text-theater-gold" />
+                      <span className="text-theater-light-gold">
+                        Билетов: {show.ticketsLeft}
+                      </span>
+                    </div>
+                    <span className="text-theater-gold font-medium">
+                      {show.price}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Buy Button */}
+                <div className="flex justify-center md:justify-end">
+                  <TheaterButton 
+                    variant="gold"
+                    href="https://qwitikеts.ru"
+                    className="w-full md:w-auto min-w-[160px] flex items-center justify-center gap-2 group"
+                  >
+                    Купить билет
+                    <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  </TheaterButton>
                 </div>
               </div>
-              
-              {/* Floating elements */}
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-theater-gold/20 rounded-full animate-mystical-float"></div>
-              <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-theater-light-gold/30 rounded-full animate-mystical-float" style={{ animationDelay: '1s' }}></div>
-            </ParallaxSection>
-          </div>
-
-          {/* Schedule */}
-          <div className="order-1 lg:order-2 space-y-6">
-            <h3 className="font-cinzel text-2xl text-theater-gold mb-8">
-              Ближайшие показы
-            </h3>
-            
-            {shows.map((show, index) => (
-              <FlipCard3D
-                key={show.id}
-                trigger="hover"
-                direction="vertical"
-                className="h-auto"
-                backContent={
-                  <div className="h-full flex flex-col items-center justify-center p-6 text-center">
-                    <div className="w-16 h-16 bg-theater-gold/20 rounded-full flex items-center justify-center mb-4">
-                      <span className="text-2xl">🎭</span>
-                    </div>
-                    <h4 className="font-cinzel text-xl text-theater-gold mb-4">
-                      Готовы к магии?
-                    </h4>
-                    <p className="font-inter text-theater-light-gold text-sm leading-relaxed mb-4">
-                      Каждое представление уникально. Вы станете свидетелем чудес, 
-                      которые невозможно повторить.
-                    </p>
-                    <div className="flex space-x-2">
-                      {Array.from({ length: 3 }).map((_, i) => (
-                        <div 
-                          key={i}
-                          className="w-3 h-3 bg-theater-gold rounded-full animate-magic-pulse"
-                          style={{ animationDelay: `${i * 0.3}s` }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                }
-              >
-                <div className="p-6 h-full">
-                  <div className="flex flex-col space-y-4">
-                    {/* Date and Time */}
-                    <div className="flex flex-wrap gap-4">
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="w-5 h-5 text-theater-gold" />
-                        <span className="font-cinzel text-lg text-theater-light-gold">
-                          {show.date}
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Clock className="w-5 h-5 text-theater-gold" />
-                        <span className="font-inter text-lg text-theater-light-gold">
-                          {show.time}
-                        </span>
-                      </div>
-                    </div>
-                    
-                    {/* Venue */}
-                    <div className="flex items-start space-x-2">
-                      <MapPin className="w-5 h-5 text-theater-gold mt-0.5" />
-                      <div>
-                        <p className="font-cinzel text-lg text-theater-gold font-medium">
-                          {show.venue}
-                        </p>
-                        <p className="font-inter text-theater-light-gold">
-                          {show.address}
-                        </p>
-                      </div>
-                    </div>
-                    
-                    {/* Tickets Info */}
-                    <div className="flex items-center justify-between pt-4 border-t border-theater-gold/20">
-                      <div className="space-y-1">
-                        <div className="flex items-center space-x-2">
-                          <Ticket className="w-4 h-4 text-theater-gold" />
-                          <span className="font-inter text-sm text-theater-light-gold">
-                            Осталось билетов: {show.ticketsLeft}
-                          </span>
-                        </div>
-                        <p className="font-cinzel text-lg text-theater-gold font-medium">
-                          {show.price}
-                        </p>
-                      </div>
-                      
-                      <TheaterButton 
-                        variant="gold"
-                        href="https://qwitikеts.ru"
-                        className="group-hover:scale-105 transition-transform"
-                      >
-                        Купить билет
-                      </TheaterButton>
-                    </div>
-                  </div>
-                </div>
-              </FlipCard3D>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
-        {/* Additional Info */}
-        <div className="mt-16 grid md:grid-cols-3 gap-8">
-          <div className="text-center p-6 bg-theater-curtain/20 rounded-lg border border-theater-gold/20">
+        {/* Show Info Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+          <div className="text-center p-6 bg-theater-burgundy/20 rounded-xl border border-theater-gold/20">
             <div className="w-12 h-12 bg-theater-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <Clock className="w-6 h-6 text-theater-gold" />
             </div>
-            <h4 className="font-cinzel text-lg text-theater-gold mb-2">Продолжительность</h4>
-            <p className="font-inter text-theater-light-gold">2 часа + антракт 10-15 минут</p>
+            <h3 className="font-cinzel text-lg text-theater-gold mb-2">Продолжительность</h3>
+            <p className="font-inter text-theater-light-gold text-sm">2 часа + антракт</p>
           </div>
 
-          <div className="text-center p-6 bg-theater-curtain/20 rounded-lg border border-theater-gold/20">
-            <div className="w-12 h-12 bg-theater-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-xl">👥</span>
-            </div>
-            <h4 className="font-cinzel text-lg text-theater-gold mb-2">Для всей семьи</h4>
-            <p className="font-inter text-theater-light-gold">Можно прийти всей семьёй, но больше понравится взрослым</p>
-          </div>
-
-          <div className="text-center p-6 bg-theater-curtain/20 rounded-lg border border-theater-gold/20">
+          <div className="text-center p-6 bg-theater-burgundy/20 rounded-xl border border-theater-gold/20">
             <div className="w-12 h-12 bg-theater-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
               <span className="text-xl">🎭</span>
             </div>
-            <h4 className="font-cinzel text-lg text-theater-gold mb-2">Серьёзное шоу</h4>
-            <p className="font-inter text-theater-light-gold">Философия и фокусы без пошлости</p>
+            <h3 className="font-cinzel text-lg text-theater-gold mb-2">Возраст</h3>
+            <p className="font-inter text-theater-light-gold text-sm">18+</p>
+          </div>
+
+          <div className="text-center p-6 bg-theater-burgundy/20 rounded-xl border border-theater-gold/20 sm:col-span-2 lg:col-span-1">
+            <div className="w-12 h-12 bg-theater-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-xl">✨</span>
+            </div>
+            <h3 className="font-cinzel text-lg text-theater-gold mb-2">Жанр</h3>
+            <p className="font-inter text-theater-light-gold text-sm">Иллюзионное шоу</p>
           </div>
         </div>
       </div>
