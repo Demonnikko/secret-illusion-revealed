@@ -53,25 +53,33 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center bg-gradient-stage overflow-hidden">
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
+      {/* Magic Particles Background */}
+      <div className="absolute inset-0 magic-particles"></div>
+      
       {/* Stage Lighting Effects */}
-      <div className="absolute inset-0">
-        <div className="absolute top-10 left-1/4 w-32 h-32 bg-theater-spotlight/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute top-20 right-1/4 w-24 h-24 bg-theater-gold/20 rounded-full blur-2xl animate-pulse delay-1000" />
-        <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-theater-light-gold/10 rounded-full blur-3xl animate-pulse delay-2000" />
+      <div className="absolute inset-0 stage-lighting">
+        <div className="absolute top-10 left-1/4 w-40 h-40 bg-theater-spotlight/30 rounded-full blur-3xl animate-magic-pulse" />
+        <div className="absolute top-20 right-1/4 w-32 h-32 bg-theater-gold/20 rounded-full blur-3xl animate-magic-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-20 left-1/3 w-48 h-48 bg-theater-light-gold/15 rounded-full blur-3xl animate-magic-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute bottom-32 right-1/4 w-36 h-36 bg-theater-spotlight/25 rounded-full blur-2xl animate-magic-pulse" style={{ animationDelay: '0.5s' }} />
       </div>
 
-      {/* Floating Particles */}
+      {/* Floating Magical Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 30 }).map((_, i) => (
+        {Array.from({ length: 50 }).map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-theater-gold/60 rounded-full animate-mystical-float"
+            className="absolute rounded-full animate-mystical-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
+              width: `${2 + Math.random() * 4}px`,
+              height: `${2 + Math.random() * 4}px`,
+              backgroundColor: Math.random() > 0.5 ? 'rgba(255, 215, 0, 0.8)' : 'rgba(255, 255, 255, 0.9)',
+              animationDelay: `${Math.random() * 6}s`,
+              animationDuration: `${4 + Math.random() * 4}s`,
+              boxShadow: '0 0 10px currentColor',
             }}
           />
         ))}
@@ -81,46 +89,63 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
       {confetti.map((piece) => (
         <div
           key={piece.id}
-          className="fixed w-2 h-2 z-50 animate-confetti-fall pointer-events-none"
+          className="fixed w-3 h-3 z-50 animate-confetti-fall pointer-events-none rounded-full"
           style={{
             backgroundColor: piece.color,
             left: `${piece.left}%`,
             animationDelay: `${piece.delay}s`,
+            boxShadow: `0 0 10px ${piece.color}`,
           }}
         />
       ))}
 
       {/* Main Content */}
-      <div className="relative z-10 text-center space-y-8 px-6 animate-fade-in-up">
+      <div className="relative z-10 text-center space-y-12 px-6 animate-fade-in-up">
         {/* Logo with Lock and Eye */}
         <div 
           className="cursor-pointer group"
           onClick={handleLogoClick}
         >
           <div className="relative inline-block">
-            <h1 className="font-cinzel text-5xl md:text-7xl font-bold text-theater-gold mb-4 group-hover:scale-105 transition-transform duration-300">
+            <h1 className="font-cinzel text-6xl md:text-8xl font-bold text-theater-gold mb-6 text-magic-glow group-hover:scale-105 transition-all duration-500 animate-mystical-float">
               ШОУ СЕКРЕТ
             </h1>
             
-            {/* Eye in Lock Symbol */}
-            <div className="absolute -top-2 -right-2 w-12 h-12 bg-theater-burgundy rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
-              <Eye className="w-6 h-6 text-theater-gold" />
+            {/* Magical Eye Symbol */}
+            <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-theater-burgundy to-theater-curtain rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 animate-glow-pulse">
+              <Eye className="w-8 h-8 text-theater-gold" />
+              
+              {/* Sparkles around eye */}
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-1 h-1 bg-theater-light-gold rounded-full animate-sparkle"
+                  style={{
+                    top: `${50 + 30 * Math.sin((i * Math.PI * 2) / 6)}%`,
+                    left: `${50 + 30 * Math.cos((i * Math.PI * 2) / 6)}%`,
+                    animationDelay: `${i * 0.5}s`
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Tagline */}
-        <p className="font-inter text-xl md:text-2xl text-theater-light-gold font-light tracking-wide max-w-2xl mx-auto">
-          Тайна, которую осмелишься увидеть
-        </p>
+        {/* Enhanced Tagline */}
+        <div className="space-y-4">
+          <p className="font-inter text-2xl md:text-3xl text-theater-light-gold font-light tracking-wide max-w-3xl mx-auto leading-relaxed animate-float-slow">
+            Тайна, которую осмелишься увидеть
+          </p>
+          <div className="w-32 h-0.5 bg-gradient-gold mx-auto rounded-full"></div>
+        </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
+        {/* Enhanced Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16">
           <TheaterButton 
             variant="gold"
             size="lg"
             onClick={() => onSectionChange('schedule')}
-            className="min-w-48"
+            className="min-w-56 theater-button-gold animate-glow-pulse"
           >
             Купить билет
           </TheaterButton>
@@ -129,17 +154,18 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
             variant="burgundy"
             size="lg"
             onClick={() => onSectionChange('promo')}
-            className="min-w-48"
+            className="min-w-56 hover:shadow-mystical transition-all duration-500"
           >
-            <Play className="w-5 h-5 mr-2" />
+            <Play className="w-6 h-6 mr-3" />
             Смотреть промо
           </TheaterButton>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8">
           <TheaterButton 
             variant="transparent"
             onClick={() => onSectionChange('discount')}
+            className="hover:bg-theater-gold/10 transition-all duration-500"
           >
             <Gift className="w-5 h-5 mr-2" />
             Получить скидку
@@ -148,6 +174,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
           <TheaterButton 
             variant="transparent"
             onClick={shareSecret}
+            className="hover:bg-theater-gold/10 transition-all duration-500"
           >
             <Share2 className="w-5 h-5 mr-2" />
             Поделиться секретом
@@ -155,26 +182,31 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
         </div>
       </div>
 
-      {/* Easter Egg Modal */}
+      {/* Enhanced Easter Egg Modal */}
       {showEasterEgg && (
-        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 animate-fade-in-up">
-          <div className="bg-theater-curtain p-8 rounded-lg max-w-2xl mx-6 text-center border border-theater-gold/30">
-            <h3 className="font-cinzel text-2xl text-theater-gold mb-6">
-              🎭 Тайное послание открыто 🎭
-            </h3>
-            <div className="overflow-hidden">
-              <p className="font-inter text-theater-light-gold leading-relaxed text-lg animate-typewriter whitespace-nowrap">
-                Истинная магия начинается тогда, когда вы перестаете искать объяснения и начинаете верить в невозможное. 
-                Добро пожаловать в мир, где чудеса — это не исключение, а правило.
-              </p>
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 animate-fade-in-up backdrop-blur-sm">
+          <div className="bg-gradient-to-br from-theater-curtain via-theater-burgundy to-theater-curtain p-10 rounded-2xl max-w-3xl mx-6 text-center border-2 border-theater-gold/50 shadow-mystical relative overflow-hidden">
+            {/* Magical background effect */}
+            <div className="absolute inset-0 magic-particles opacity-50"></div>
+            
+            <div className="relative z-10">
+              <h3 className="font-cinzel text-3xl text-theater-gold mb-8 text-magic-glow">
+                🎭 Тайное послание открыто 🎭
+              </h3>
+              <div className="overflow-hidden border border-theater-gold/30 rounded-lg p-6 bg-black/30">
+                <p className="font-inter text-theater-light-gold leading-relaxed text-xl animate-typewriter whitespace-nowrap overflow-hidden">
+                  Истинная магия начинается тогда, когда вы перестаете искать объяснения и начинаете верить в невозможное. 
+                  Добро пожаловать в мир, где чудеса — это не исключение, а правило.
+                </p>
+              </div>
+              <TheaterButton 
+                variant="gold"
+                className="mt-8 theater-button-gold"
+                onClick={() => setShowEasterEgg(false)}
+              >
+                Понял секрет
+              </TheaterButton>
             </div>
-            <TheaterButton 
-              variant="gold"
-              className="mt-6"
-              onClick={() => setShowEasterEgg(false)}
-            >
-              Понял секрет
-            </TheaterButton>
           </div>
         </div>
       )}

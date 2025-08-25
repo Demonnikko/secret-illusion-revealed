@@ -21,8 +21,11 @@ const Footer = ({ onSectionChange }: FooterProps) => {
   };
 
   return (
-    <footer className="bg-theater-curtain border-t border-theater-gold/20 py-12 px-6">
-      <div className="max-w-6xl mx-auto">
+    <footer className="bg-black border-t border-theater-gold/20 py-12 px-6 relative overflow-hidden">
+      {/* Magic Particles Background */}
+      <div className="absolute inset-0 magic-particles opacity-10"></div>
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-8">
           <h3 className="font-cinzel text-2xl md:text-3xl text-theater-gold mb-4">
             Секрет всегда рядом. Готовы открыть свой?

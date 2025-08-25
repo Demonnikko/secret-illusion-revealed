@@ -3,8 +3,14 @@ import { ExternalLink } from 'lucide-react';
 
 const PrivateEventsSection = () => {
   return (
-    <section className="min-h-screen bg-gradient-curtain py-20 px-6">
-      <div className="max-w-4xl mx-auto text-center">
+    <section className="min-h-screen bg-black py-20 px-6 relative overflow-hidden">
+      {/* Magic Particles Background */}
+      <div className="absolute inset-0 magic-particles opacity-20"></div>
+      
+      {/* Stage Lighting */}
+      <div className="absolute inset-0 stage-lighting opacity-15"></div>
+      
+      <div className="max-w-4xl mx-auto text-center relative z-10">
         <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-theater-gold mb-8">
           Частные мероприятия
         </h2>

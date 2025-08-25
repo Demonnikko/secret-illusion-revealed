@@ -1,134 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Theater Theme - Light Mode */
-    --background: 20 10% 98%;
-    --foreground: 345 60% 15%;
-
-    --card: 20 10% 98%;
-    --card-foreground: 345 60% 15%;
-
-    --popover: 20 10% 98%;
-    --popover-foreground: 345 60% 15%;
-
-    /* Theater Burgundy Primary */
-    --primary: 345 60% 30%;
-    --primary-foreground: 45 90% 85%;
-
-    /* Gold Secondary */
-    --secondary: 45 90% 85%;
-    --secondary-foreground: 345 60% 15%;
-
-    /* Theater Gold Accent */
-    --accent: 45 90% 60%;
-    --accent-foreground: 345 60% 15%;
-
-    --muted: 20 10% 92%;
-    --muted-foreground: 345 30% 45%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 20 10% 85%;
-    --input: 20 10% 85%;
-    --ring: 45 90% 60%;
-
+    /* Theater Color Palette - Premium Dark Theme */
+    --background: 0 0% 0%; /* Pure black */
+    --foreground: 45 100% 85%;
+    
+    --card: 0 0% 5%;
+    --card-foreground: 45 100% 85%;
+    
+    --popover: 0 0% 8%;
+    --popover-foreground: 45 100% 85%;
+    
+    --primary: 45 100% 50%; /* Gold */
+    --primary-foreground: 0 0% 0%;
+    
+    --secondary: 345 80% 25%; /* Deep burgundy */
+    --secondary-foreground: 45 100% 85%;
+    
+    --muted: 0 0% 10%;
+    --muted-foreground: 45 50% 60%;
+    
+    --accent: 45 100% 60%;
+    --accent-foreground: 0 0% 0%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 45 100% 85%;
+    
+    --border: 45 30% 15%;
+    --input: 0 0% 15%;
+    --ring: 45 100% 50%;
+    
     --radius: 0.75rem;
 
-    /* Custom Theater Colors */
-    --theater-burgundy: 345 60% 30%;
-    --theater-gold: 45 90% 60%;
-    --theater-light-gold: 45 70% 75%;
-    --theater-stage: 45 30% 25%;
-    --theater-curtain: 345 50% 25%;
-    --theater-spotlight: 45 100% 85%;
+    /* Theater Specific Colors */
+    --theater-burgundy: 345 80% 25%;
+    --theater-gold: 45 100% 50%;
+    --theater-light-gold: 45 100% 70%;
+    --theater-stage: 0 0% 0%;
+    --theater-curtain: 345 50% 8%;
+    --theater-spotlight: 50 100% 80%;
 
-    /* Gradients */
-    --gradient-stage: linear-gradient(135deg, hsl(var(--theater-stage)), hsl(var(--theater-burgundy)));
-    --gradient-curtain: linear-gradient(180deg, hsl(var(--theater-curtain)), hsl(var(--theater-burgundy)));
-    --gradient-gold: linear-gradient(135deg, hsl(var(--theater-gold)), hsl(var(--theater-light-gold)));
+    /* Magical Gradients */
+    --gradient-stage: linear-gradient(135deg, 
+      rgba(0, 0, 0, 1) 0%, 
+      rgba(20, 8, 12, 0.9) 50%, 
+      rgba(0, 0, 0, 1) 100%);
+    
+    --gradient-curtain: linear-gradient(180deg, 
+      rgba(0, 0, 0, 1) 0%, 
+      rgba(30, 12, 18, 0.8) 50%, 
+      rgba(0, 0, 0, 1) 100%);
+    
+    --gradient-gold: linear-gradient(135deg, 
+      hsl(45, 100%, 50%) 0%, 
+      hsl(40, 100%, 60%) 25%,
+      hsl(50, 100%, 70%) 50%,
+      hsl(45, 100%, 50%) 75%,
+      hsl(38, 100%, 45%) 100%);
 
-    /* Shadows */
-    --shadow-mystical: 0 10px 40px -10px hsl(var(--theater-burgundy) / 0.3);
-    --shadow-gold-glow: 0 0 30px hsl(var(--theater-gold) / 0.4);
-    --shadow-stage: 0 20px 60px -15px hsl(var(--theater-stage) / 0.5);
+    --gradient-mystical: radial-gradient(circle, 
+      rgba(255, 215, 0, 0.1) 0%, 
+      rgba(122, 30, 43, 0.05) 50%, 
+      rgba(0, 0, 0, 1) 100%);
 
-    /* Animations */
-    --transition-mystical: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    --transition-curtain: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    /* Magical Shadows */
+    --shadow-mystical: 0 0 50px rgba(255, 215, 0, 0.3), 
+                       0 0 100px rgba(255, 215, 0, 0.1),
+                       0 20px 40px rgba(0, 0, 0, 0.8);
+    
+    --shadow-gold-glow: 0 0 30px rgba(255, 215, 0, 0.5),
+                        0 0 60px rgba(255, 215, 0, 0.2),
+                        0 10px 30px rgba(0, 0, 0, 0.8);
+    
+    --shadow-stage: inset 0 0 100px rgba(255, 215, 0, 0.1),
+                    0 0 50px rgba(0, 0, 0, 0.9);
 
-    --sidebar-background: 0 0% 98%;
+    /* Smooth Transitions */
+    --transition-mystical: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-curtain: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 45 100% 85%;
+    --sidebar-primary: 45 100% 50%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 345 80% 25%;
+    --sidebar-accent-foreground: 45 100% 85%;
+    --sidebar-border: 45 30% 15%;
+    --sidebar-ring: 45 100% 50%;
+  }
+}
 
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+@layer components {
+  /* Magic Particle Effects */
+  .magic-particles::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, rgba(255, 215, 0, 0.8), transparent),
+      radial-gradient(2px 2px at 40px 70px, rgba(255, 215, 0, 0.6), transparent),
+      radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.9), transparent),
+      radial-gradient(1px 1px at 130px 80px, rgba(255, 215, 0, 0.7), transparent),
+      radial-gradient(2px 2px at 160px 30px, rgba(255, 255, 255, 0.6), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sparkle-float 10s linear infinite;
+    pointer-events: none;
   }
 
-  .dark {
-    /* Theater Theme - Dark Mode */
-    --background: 240 15% 6%;
-    --foreground: 45 90% 85%;
+  /* Magical Text Glow */
+  .text-magic-glow {
+    text-shadow: 
+      0 0 10px rgba(255, 215, 0, 0.8),
+      0 0 20px rgba(255, 215, 0, 0.5),
+      0 0 30px rgba(255, 215, 0, 0.3);
+  }
 
-    --card: 240 15% 8%;
-    --card-foreground: 45 90% 85%;
+  /* Theater Button Enhancements */
+  .theater-button-gold {
+    background: var(--gradient-gold);
+    box-shadow: var(--shadow-gold-glow);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+  }
 
-    --popover: 240 15% 8%;
-    --popover-foreground: 45 90% 85%;
+  .theater-button-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+  }
 
-    /* Enhanced Gold Primary in Dark */
-    --primary: 45 90% 60%;
-    --primary-foreground: 240 15% 6%;
+  .theater-button-gold:hover::before {
+    left: 100%;
+  }
 
-    /* Dark Burgundy Secondary */
-    --secondary: 345 40% 15%;
-    --secondary-foreground: 45 90% 85%;
+  /* Floating Animation */
+  .mystical-float {
+    animation: mystical-float 6s ease-in-out infinite;
+  }
 
-    /* Bright Gold Accent */
-    --accent: 45 100% 70%;
-    --accent-foreground: 240 15% 6%;
+  /* Stage Lighting */
+  .stage-lighting {
+    position: relative;
+  }
 
-    --muted: 240 15% 12%;
-    --muted-foreground: 45 30% 65%;
-
-    --destructive: 0 62.8% 50.6%;
-    --destructive-foreground: 45 90% 85%;
-
-    --border: 240 15% 15%;
-    --input: 240 15% 15%;
-    --ring: 45 90% 60%;
-
-    /* Dark Mode Theater Colors */
-    --theater-burgundy: 345 50% 25%;
-    --theater-gold: 45 100% 70%;
-    --theater-light-gold: 45 80% 75%;
-    --theater-stage: 240 20% 8%;
-    --theater-curtain: 345 40% 12%;
-    --theater-spotlight: 45 100% 90%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+  .stage-lighting::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    animation: spotlight-sweep 8s linear infinite;
+    pointer-events: none;
   }
 }
 
@@ -138,6 +177,6 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-black text-foreground;
   }
 }

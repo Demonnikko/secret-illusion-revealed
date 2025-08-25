@@ -43,7 +43,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-theater-stage font-inter overflow-x-hidden">
+    <div className="min-h-screen bg-black font-inter overflow-x-hidden">
       <Navigation onSectionChange={handleSectionChange} />
       
       <main>

@@ -22,8 +22,14 @@ const AboutSection = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-theater-stage py-20 px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-black py-20 px-6 relative overflow-hidden">
+      {/* Magic Particles Background */}
+      <div className="absolute inset-0 magic-particles opacity-30"></div>
+      
+      {/* Stage Lighting */}
+      <div className="absolute inset-0 stage-lighting opacity-20"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="font-cinzel text-4xl md:text-5xl font-bold text-theater-gold mb-6">
