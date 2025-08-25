@@ -27,19 +27,6 @@ const Footer = ({ onSectionChange }: FooterProps) => {
       <div className="absolute inset-0 magic-particles opacity-10"></div>
       
       <div className="max-w-6xl mx-auto relative z-10">
-        <div className="text-center mb-8">
-          <h3 className="font-cinzel text-2xl md:text-3xl text-theater-gold mb-4">
-            Секрет всегда рядом. Готовы открыть свой?
-          </h3>
-          <TheaterButton 
-            variant="gold"
-            size="lg"
-            onClick={() => onSectionChange('schedule')}
-          >
-            Купить билет
-          </TheaterButton>
-        </div>
-        
         <div className="grid md:grid-cols-4 gap-6 mb-8">
           <SparkleTrail>
             <button
@@ -91,9 +78,6 @@ const Footer = ({ onSectionChange }: FooterProps) => {
         </div>
         
         <div className="text-center border-t border-theater-gold/20 pt-6">
-          <p className="font-inter text-theater-light-gold/60 text-sm mb-2">
-            © 2024 Шоу Секрет. Дмитрий Костюк. Все права защищены.
-          </p>
           <p className="font-inter text-theater-light-gold/50 text-xs">
             ИП КОСТЮК 2025 работаем официально
           </p>
