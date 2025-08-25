@@ -110,23 +110,24 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
         />
       </div>
 
-      {/* Floating Magical Particles */}
+      {/* Floating Question Marks */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {Array.from({ length: 50 }).map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full animate-mystical-float"
+            className="absolute animate-mystical-float text-theater-gold opacity-80 font-bold"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              width: `${2 + Math.random() * 4}px`,
-              height: `${2 + Math.random() * 4}px`,
-              backgroundColor: Math.random() > 0.5 ? 'rgba(255, 215, 0, 0.8)' : 'rgba(255, 255, 255, 0.9)',
+              fontSize: `${8 + Math.random() * 8}px`,
+              color: Math.random() > 0.5 ? 'rgba(255, 215, 0, 0.8)' : 'rgba(255, 255, 255, 0.9)',
               animationDelay: `${Math.random() * 6}s`,
               animationDuration: `${4 + Math.random() * 4}s`,
-              boxShadow: '0 0 10px currentColor',
+              textShadow: '0 0 10px currentColor',
             }}
-          />
+          >
+            ?
+          </div>
         ))}
       </div>
 
@@ -236,7 +237,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
               <TheaterButton 
                 variant="burgundy"
                 size="lg"
-                onClick={() => onSectionChange('promo')}
+                onClick={() => onSectionChange('about')}
                 className="min-w-56 hover:shadow-mystical transition-all duration-500 hover:animate-micro-wiggle"
               >
                 <Play className="w-6 h-6 mr-3" />
@@ -251,7 +252,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
             <MagicalTooltip content="Получите специальную скидку на билеты">
               <TheaterButton 
                 variant="transparent"
-                onClick={() => onSectionChange('discount')}
+                href="https://v0-recreate-ui-screenshot-xi-azure.vercel.app/"
                 className="hover:animate-micro-bounce"
               >
                 <Gift className="w-5 h-5 mr-2" />
