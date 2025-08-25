@@ -22,7 +22,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black py-8 md:py-20 px-4 md:px-6 relative overflow-hidden">
+    <div className="min-h-screen-safe bg-black py-8 md:py-20 px-4 md:px-6 relative overflow-hidden pt-safe pb-safe">
       {/* Magic Particles Background */}
       <div className="absolute inset-0 magic-particles opacity-30"></div>
       
@@ -156,7 +156,7 @@ const AboutSection = () => {
 
         {/* Video Modal */}
         {selectedVideo && (
-          <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 md:p-6">
+          <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 md:p-6 pt-safe pb-safe pl-safe pr-safe">
             <div className="bg-theater-curtain rounded-xl p-4 md:p-6 max-w-4xl w-full max-h-screen overflow-y-auto">
               <div className="flex justify-between items-center mb-4">
                 <h4 className="font-cinzel text-lg md:text-xl text-theater-gold">
