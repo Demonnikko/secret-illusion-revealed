@@ -222,7 +222,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
         <CinematicTransition delay={1200} direction="up">
           {/* Enhanced Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16">
-            <MagicalTooltip content="Забронируйте места на волшебное представление">
+            <MagicalTooltip content="Посмотрите расписание и забронируйте места">
               <TheaterButton 
                 variant="gold"
                 size="lg"
@@ -249,25 +249,25 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
 
         <CinematicTransition delay={1500} direction="up">
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8">
-            <MagicalTooltip content="Получите специальную скидку на билеты">
+            <MagicalTooltip content="Организуйте уникальное частное мероприятие">
               <TheaterButton 
                 variant="transparent"
-                href="https://v0-recreate-ui-screenshot-xi-azure.vercel.app/"
+                onClick={() => onSectionChange('private-events')}
                 className="hover:animate-micro-bounce"
               >
                 <Gift className="w-5 h-5 mr-2" />
-                Получить скидку
+                Частные мероприятия
               </TheaterButton>
             </MagicalTooltip>
             
-            <MagicalTooltip content="Поделитесь магией с друзьями">
+            <MagicalTooltip content="Изучите искусство иллюзий в нашей школе">
               <TheaterButton 
-                variant="transparent"
-                onClick={shareSecret}
+                variant="burgundy"
+                onClick={() => onSectionChange('school')}
                 className="hover:animate-micro-shake"
               >
-                <Share2 className="w-5 h-5 mr-2" />
-                Поделиться секретом
+                <span className="text-xl mr-2">🎩</span>
+                Школа фокусов
               </TheaterButton>
             </MagicalTooltip>
           </div>
