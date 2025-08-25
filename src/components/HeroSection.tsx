@@ -251,7 +251,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
             <MagicalTooltip content="Организуйте уникальное частное мероприятие">
               <TheaterButton 
                 variant="transparent"
-                onClick={() => onSectionChange('private-events')}
+                onClick={() => onSectionChange('private')}
                 className="hover:animate-micro-bounce"
               >
                 Частные мероприятия
