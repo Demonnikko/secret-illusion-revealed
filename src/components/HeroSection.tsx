@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Eye, Play, Gift, Share2 } from 'lucide-react';
+import { Play, Gift, Share2 } from 'lucide-react';
 import TheaterButton from './TheaterButton';
 import MagicalTooltip from './MagicalTooltip';
 import { useParallax } from '@/hooks/useParallax';
@@ -157,20 +157,75 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
                 ШОУ СЕКРЕТ
               </h1>
               
-              {/* Magical Eye Symbol */}
+              {/* Magical Lock Symbol */}
               <MagicalTooltip content="Кликните 5 раз для открытия секретного послания!" position="top">
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-theater-burgundy to-theater-curtain rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 animate-glow-pulse hover:animate-micro-bounce">
-                  <Eye className="w-8 h-8 text-theater-gold" />
+                <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-theater-burgundy to-theater-curtain rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 animate-glow-pulse hover:animate-micro-bounce shadow-2xl border-2 border-theater-gold/30">
+                  {/* Ancient Lock SVG */}
+                  <div className="relative">
+                    <svg
+                      width="32"
+                      height="36"
+                      viewBox="0 0 32 36"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="text-theater-gold drop-shadow-2xl"
+                    >
+                      {/* Lock body */}
+                      <rect x="6" y="14" width="20" height="18" rx="3" fill="currentColor" stroke="currentColor" strokeWidth="1"/>
+                      <rect x="8" y="16" width="16" height="14" rx="2" fill="rgba(0,0,0,0.3)"/>
+                      
+                      {/* Lock shackle */}
+                      <path 
+                        d="M10 14V10C10 6.68629 12.6863 4 16 4C19.3137 4 22 6.68629 22 10V14" 
+                        stroke="currentColor" 
+                        strokeWidth="2.5" 
+                        fill="none"
+                        strokeLinecap="round"
+                      />
+                      
+                      {/* Keyhole with glow effect */}
+                      <g className="animate-pulse">
+                        <circle cx="16" cy="23" r="2.5" fill="#FFD700" className="drop-shadow-lg"/>
+                        <rect x="15.2" y="23" width="1.6" height="4" rx="0.8" fill="#FFD700"/>
+                        
+                        {/* Keyhole glow */}
+                        <circle cx="16" cy="23" r="4" fill="none" stroke="#FFD700" strokeWidth="0.5" opacity="0.6" className="animate-ping"/>
+                        <circle cx="16" cy="23" r="6" fill="none" stroke="#FFD700" strokeWidth="0.3" opacity="0.3" className="animate-ping" style={{ animationDelay: '0.5s' }}/>
+                      </g>
+                      
+                      {/* Decorative elements */}
+                      <circle cx="10" cy="18" r="0.8" fill="currentColor" opacity="0.6"/>
+                      <circle cx="22" cy="18" r="0.8" fill="currentColor" opacity="0.6"/>
+                      <circle cx="10" cy="28" r="0.8" fill="currentColor" opacity="0.6"/>
+                      <circle cx="22" cy="28" r="0.8" fill="currentColor" opacity="0.6"/>
+                    </svg>
+                    
+                    {/* Magical light rays from keyhole */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                      {[...Array(8)].map((_, i) => (
+                        <div
+                          key={i}
+                          className="absolute w-0.5 h-8 bg-gradient-to-t from-theater-gold to-transparent animate-pulse origin-bottom"
+                          style={{
+                            transform: `rotate(${i * 45}deg) translateY(-12px)`,
+                            animationDelay: `${i * 0.2}s`,
+                            opacity: 0.7
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
                   
-                  {/* Sparkles around eye */}
-                  {[...Array(6)].map((_, i) => (
+                  {/* Enhanced sparkles around lock */}
+                  {[...Array(8)].map((_, i) => (
                     <div
                       key={i}
-                      className="absolute w-1 h-1 bg-theater-light-gold rounded-full animate-sparkle"
+                      className="absolute w-1.5 h-1.5 bg-theater-light-gold rounded-full animate-sparkle"
                       style={{
-                        top: `${50 + 30 * Math.sin((i * Math.PI * 2) / 6)}%`,
-                        left: `${50 + 30 * Math.cos((i * Math.PI * 2) / 6)}%`,
-                        animationDelay: `${i * 0.5}s`
+                        top: `${50 + 35 * Math.sin((i * Math.PI * 2) / 8)}%`,
+                        left: `${50 + 35 * Math.cos((i * Math.PI * 2) / 8)}%`,
+                        animationDelay: `${i * 0.3}s`,
+                        boxShadow: '0 0 8px currentColor'
                       }}
                     />
                   ))}
