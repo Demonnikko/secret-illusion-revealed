@@ -81,13 +81,13 @@ const SectionManager = ({ activeSection, onClose }: SectionManagerProps) => {
       {/* Close button */}
       <button
         onClick={onClose}
-        className="fixed top-4 right-4 z-[60] w-12 h-12 bg-theater-gold/20 hover:bg-theater-gold/30 rounded-full flex items-center justify-center text-theater-gold hover:text-theater-light-gold transition-all duration-300 group"
+        className="fixed top-2 md:top-4 right-2 md:right-4 z-[60] w-10 h-10 md:w-12 md:h-12 bg-theater-gold/20 hover:bg-theater-gold/30 rounded-full flex items-center justify-center text-theater-gold hover:text-theater-light-gold transition-all duration-300 group"
       >
-        <span className="text-2xl group-hover:rotate-90 transition-transform duration-300">×</span>
+        <span className="text-xl md:text-2xl group-hover:rotate-90 transition-transform duration-300">×</span>
       </button>
 
       {/* Section content */}
-      <div className="min-h-screen">
+      <div className="min-h-screen pt-12 md:pt-0">
         {renderSection()}
       </div>
     </div>
