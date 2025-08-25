@@ -19,7 +19,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
   const [confetti, setConfetti] = useState<Array<{ id: number; color: string; left: number; delay: number }>>([]);
   
   const parallaxOffset = useParallax(0.3);
-  const { getMouseParallax } = useMouseTracker();
+  const { mousePosition, getMouseParallax } = useMouseTracker();
   const theaterToast = useTheaterToast();
   const { playSound } = useTheaterSounds();
   const { magical, heavy } = useHapticFeedback();
@@ -85,8 +85,8 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
         className="absolute inset-0 stage-lighting" 
         style={{ transform: `translateY(${parallaxOffset * 0.5}px)` }}
       >
-        <div
-          className="absolute top-10 left-1/4 w-40 h-40 bg-theater-spotlight/30 rounded-full blur-3xl animate-magic-pulse" 
+        <div 
+          className="absolute top-32 left-1/4 w-40 h-40 bg-theater-spotlight/30 rounded-full blur-3xl animate-magic-pulse"
           style={getMouseParallax(10)}
         />
         <div 

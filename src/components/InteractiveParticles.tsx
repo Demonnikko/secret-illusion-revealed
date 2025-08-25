@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useMouseTracker } from '@/hooks/useMouseTracker';
 
 interface Particle {
@@ -15,9 +15,9 @@ interface Particle {
 
 const InteractiveParticles = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [particles, setParticles] = useState<Particle[]>([]);
   const { mousePosition, isMoving } = useMouseTracker();
   const animationFrameRef = useRef<number>();
+  const particlesRef = useRef<Particle[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -47,36 +47,32 @@ const InteractiveParticles = () => {
     });
 
     const updateParticles = () => {
-      setParticles(prev => {
-        const updated = prev.map(particle => ({
-          ...particle,
-          x: particle.x + particle.vx,
-          y: particle.y + particle.vy,
-          life: particle.life + 1,
-          vx: particle.vx * 0.99,
-          vy: particle.vy * 0.99,
-        })).filter(particle => particle.life < particle.maxLife);
+      particlesRef.current = particlesRef.current.map(particle => ({
+        ...particle,
+        x: particle.x + particle.vx,
+        y: particle.y + particle.vy,
+        life: particle.life + 1,
+        vx: particle.vx * 0.99,
+        vy: particle.vy * 0.99,
+      })).filter(particle => particle.life < particle.maxLife);
 
-        // Add new particles when mouse is moving
-        if (isMoving && updated.length < 50) {
-          const newParticles = Array.from({ length: 3 }, () => 
-            createParticle(
-              mousePosition.x + (Math.random() - 0.5) * 20,
-              mousePosition.y + (Math.random() - 0.5) * 20
-            )
-          );
-          return [...updated, ...newParticles];
-        }
-
-        return updated;
-      });
+      // Add new particles when mouse is moving
+      if (isMoving && particlesRef.current.length < 50) {
+        const newParticles = Array.from({ length: 3 }, () => 
+          createParticle(
+            mousePosition.x + (Math.random() - 0.5) * 20,
+            mousePosition.y + (Math.random() - 0.5) * 20
+          )
+        );
+        particlesRef.current = [...particlesRef.current, ...newParticles];
+      }
     };
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      particles.forEach(particle => {
-        const alpha = 1 - (particle.life / particle.maxLife);
+      particlesRef.current.forEach(particle => {
+        const alpha = Math.max(0, 1 - particle.life / particle.maxLife);
         ctx.save();
         ctx.globalAlpha = alpha;
         ctx.fillStyle = particle.color;
@@ -105,7 +101,7 @@ const InteractiveParticles = () => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [mousePosition, isMoving, particles]);
+  }, [mousePosition.x, mousePosition.y, isMoving]);
 
   return (
     <canvas

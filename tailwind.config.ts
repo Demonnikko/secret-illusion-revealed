@@ -100,21 +100,27 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				}
 			},
-			backgroundImage: {
-				'gradient-stage': 'var(--gradient-stage)',
-				'gradient-curtain': 'var(--gradient-curtain)',
-				'gradient-gold': 'var(--gradient-gold)',
-				'gradient-radial': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
+		backgroundImage: {
+			'gradient-stage': 'var(--gradient-stage)',
+			'gradient-curtain': 'var(--gradient-curtain)',
+			'gradient-gold': 'var(--gradient-gold)',
+			'gradient-radial': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
+		},
+		perspective: {
+			'1000': '1000px',
+		},
+		transformStyle: {
+			'preserve-3d': 'preserve-3d',
+		},
+		backfaceVisibility: {
+			'hidden': 'hidden',
+		},
+		extend: {
+			rotate: {
+				'y-180': '180deg',
+				'x-180': '180deg',
 			},
-			perspective: {
-				'1000': '1000px',
-			},
-			transformStyle: {
-				'preserve-3d': 'preserve-3d',
-			},
-			backfaceVisibility: {
-				'hidden': 'hidden',
-			},
+		},
 			boxShadow: {
 				'mystical': 'var(--shadow-mystical)',
 				'gold-glow': 'var(--shadow-gold-glow)',
@@ -327,5 +333,32 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addUtilities }: any) {
+			addUtilities({
+				'.perspective-1000': {
+					perspective: '1000px',
+				},
+				'.transform-style-preserve-3d': {
+					'transform-style': 'preserve-3d',
+				},
+				'.backface-hidden': {
+					'backface-visibility': 'hidden',
+				},
+				'.rotate-y-180': {
+					transform: 'rotateY(180deg)',
+				},
+				'.rotate-x-180': {
+					transform: 'rotateX(180deg)',
+				},
+				'.rotate-y-0': {
+					transform: 'rotateY(0deg)',
+				},
+				'.rotate-x-0': {
+					transform: 'rotateX(0deg)',
+				},
+			})
+		}
+	],
 } satisfies Config;
