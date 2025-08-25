@@ -47,12 +47,10 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
       }));
       setConfetti(newConfetti);
 
-      // Reset after animation
+      // Clear confetti after animation but keep modal open
       setTimeout(() => {
-        setShowEasterEgg(false);
         setConfetti([]);
-        setEasterEggClicks(0);
-      }, 5000);
+      }, 3000);
     }
   };
 
@@ -267,7 +265,10 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
               <TheaterButton 
                 variant="gold"
                 className="mt-8 theater-button-gold"
-                onClick={() => setShowEasterEgg(false)}
+                onClick={() => {
+                  setShowEasterEgg(false);
+                  setEasterEggClicks(0);
+                }}
               >
                 Понял секрет
               </TheaterButton>
