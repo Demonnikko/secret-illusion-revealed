@@ -154,8 +154,8 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
             className="cursor-pointer group"
             onClick={handleLogoClick}
           >
-            <div className="relative inline-block" style={getMouseParallax(5)}>
-              <h1 className="font-cinzel text-responsive-5xl font-bold text-theater-gold mb-6 text-magic-glow group-hover:scale-105 transition-all duration-500 animate-mystical-float">
+            <div className="relative inline-block">
+              <h1 className="font-cinzel text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-theater-gold mb-6 text-magic-glow group-hover:scale-105 transition-all duration-500 animate-mystical-float">
                 ШОУ СЕКРЕТ
               </h1>
               
@@ -185,7 +185,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
         <CinematicTransition delay={800} direction="up">
           {/* Enhanced Tagline */}
           <div className="space-y-4">
-            <p className="font-inter text-responsive-2xl text-theater-light-gold font-light tracking-wide max-w-3xl mx-auto leading-relaxed animate-float-slow">
+            <p className="font-inter text-lg md:text-xl lg:text-2xl text-theater-light-gold font-light tracking-wide max-w-3xl mx-auto leading-relaxed animate-float-slow">
               Тайна, которую осмелишься увидеть
             </p>
             <div className="w-32 h-0.5 bg-gradient-gold mx-auto rounded-full animate-glow-pulse"></div>
@@ -258,8 +258,8 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
               <h3 className="font-cinzel text-3xl text-theater-gold mb-8 text-magic-glow">
                 🎭 Тайное послание открыто 🎭
               </h3>
-              <div className="overflow-hidden border border-theater-gold/30 rounded-lg p-6 bg-black/30">
-                <p className="font-inter text-theater-light-gold leading-relaxed text-xl animate-typewriter whitespace-nowrap overflow-hidden">
+              <div className="border border-theater-gold/30 rounded-lg p-4 md:p-6 bg-black/30">
+                <p className="font-inter text-theater-light-gold leading-relaxed text-sm md:text-base lg:text-lg break-words">
                   Истинная магия начинается тогда, когда вы перестаете искать объяснения и начинаете верить в невозможное. 
                   Добро пожаловать в мир, где чудеса — это не исключение, а правило.
                 </p>

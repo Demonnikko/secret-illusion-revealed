@@ -91,8 +91,11 @@ const Footer = ({ onSectionChange }: FooterProps) => {
         </div>
         
         <div className="text-center border-t border-theater-gold/20 pt-6">
-          <p className="font-inter text-theater-light-gold/60 text-sm">
+          <p className="font-inter text-theater-light-gold/60 text-sm mb-2">
             © 2024 Шоу Секрет. Дмитрий Костюк. Все права защищены.
+          </p>
+          <p className="font-inter text-theater-light-gold/50 text-xs">
+            ИП КОСТЮК 2025 работаем официально
           </p>
         </div>
       </div>
