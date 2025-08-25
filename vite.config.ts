@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: process.env.NODE_ENV === 'production' ? '/secret-illusion-revealed/' : '/',
+  base: '/secret-illusion-revealed/',
   server: {
     host: "::",
     port: 8080,
