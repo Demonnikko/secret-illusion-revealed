@@ -16,6 +16,7 @@ const Navigation = ({ onSectionChange }: NavigationProps) => {
     { label: 'Частные мероприятия', section: 'private' },
     { label: 'Школа фокусов', section: 'school' },
     { label: 'Контакты', section: 'contacts' },
+    { label: 'FAQ', section: 'faq' },
   ];
 
   const handleItemClick = (section: string) => {

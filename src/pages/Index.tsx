@@ -5,6 +5,11 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import ReviewsSection from '@/components/ReviewsSection';
 import ScheduleSection from '@/components/ScheduleSection';
+import PrivateEventsSection from '@/components/PrivateEventsSection';
+import SchoolSection from '@/components/SchoolSection';
+import ContactsSection from '@/components/ContactsSection';
+import FAQSection from '@/components/FAQSection';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const [showLoading, setShowLoading] = useState(true);
@@ -57,7 +62,25 @@ const Index = () => {
         <div id="schedule">
           <ScheduleSection />
         </div>
+        
+        <div id="private">
+          <PrivateEventsSection />
+        </div>
+        
+        <div id="school">
+          <SchoolSection />
+        </div>
+        
+        <div id="contacts">
+          <ContactsSection />
+        </div>
+        
+        <div id="faq">
+          <FAQSection />
+        </div>
       </main>
+      
+      <Footer onSectionChange={handleSectionChange} />
     </div>
   );
 };
