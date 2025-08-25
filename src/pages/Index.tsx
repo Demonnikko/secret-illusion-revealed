@@ -10,6 +10,7 @@ import SchoolSection from '@/components/SchoolSection';
 import ContactsSection from '@/components/ContactsSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
+import InteractiveParticles from '@/components/InteractiveParticles';
 
 const Index = () => {
   const [showLoading, setShowLoading] = useState(true);
@@ -43,7 +44,10 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black font-inter overflow-x-hidden">
+    <div className="min-h-screen bg-black font-inter overflow-x-hidden relative">
+      {/* Interactive Particles Layer */}
+      <InteractiveParticles />
+      
       <Navigation onSectionChange={handleSectionChange} />
       
       <main>

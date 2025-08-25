@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Eye, Play, Gift, Share2 } from 'lucide-react';
 import TheaterButton from './TheaterButton';
+import { useParallax } from '@/hooks/useParallax';
+import { useMouseTracker } from '@/hooks/useMouseTracker';
+import CinematicTransition from './CinematicTransition';
 
 interface HeroSectionProps {
   onSectionChange: (section: string) => void;
@@ -52,17 +55,44 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
     }
   };
 
+  const { getParallaxProps, getParallaxScale } = useParallax();
+  const { getMouseParallax } = useMouseTracker();
+
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
-      {/* Magic Particles Background */}
-      <div className="absolute inset-0 magic-particles"></div>
+      {/* Magic Particles Background with Parallax */}
+      <div 
+        className="absolute inset-0 magic-particles"
+        {...getParallaxProps(-0.5)}
+      ></div>
       
-      {/* Stage Lighting Effects */}
-      <div className="absolute inset-0 stage-lighting">
-        <div className="absolute top-10 left-1/4 w-40 h-40 bg-theater-spotlight/30 rounded-full blur-3xl animate-magic-pulse" />
-        <div className="absolute top-20 right-1/4 w-32 h-32 bg-theater-gold/20 rounded-full blur-3xl animate-magic-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-20 left-1/3 w-48 h-48 bg-theater-light-gold/15 rounded-full blur-3xl animate-magic-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute bottom-32 right-1/4 w-36 h-36 bg-theater-spotlight/25 rounded-full blur-2xl animate-magic-pulse" style={{ animationDelay: '0.5s' }} />
+      {/* Stage Lighting Effects with Parallax */}
+      <div className="absolute inset-0 stage-lighting" {...getParallaxProps(-0.3)}>
+        <div 
+          className="absolute top-10 left-1/4 w-40 h-40 bg-theater-spotlight/30 rounded-full blur-3xl animate-magic-pulse" 
+          style={getMouseParallax(10)}
+        />
+        <div 
+          className="absolute top-20 right-1/4 w-32 h-32 bg-theater-gold/20 rounded-full blur-3xl animate-magic-pulse" 
+          style={{ 
+            animationDelay: '1s',
+            ...getMouseParallax(15)
+          }} 
+        />
+        <div 
+          className="absolute bottom-20 left-1/3 w-48 h-48 bg-theater-light-gold/15 rounded-full blur-3xl animate-magic-pulse" 
+          style={{ 
+            animationDelay: '2s',
+            ...getMouseParallax(8)
+          }} 
+        />
+        <div 
+          className="absolute bottom-32 right-1/4 w-36 h-36 bg-theater-spotlight/25 rounded-full blur-2xl animate-magic-pulse" 
+          style={{ 
+            animationDelay: '0.5s',
+            ...getMouseParallax(12)
+          }} 
+        />
       </div>
 
       {/* Floating Magical Particles */}
@@ -99,87 +129,93 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
         />
       ))}
 
-      {/* Main Content */}
-      <div className="relative z-10 text-center space-y-12 px-6 animate-fade-in-up">
-        {/* Logo with Lock and Eye */}
-        <div 
-          className="cursor-pointer group"
-          onClick={handleLogoClick}
-        >
-          <div className="relative inline-block">
-            <h1 className="font-cinzel text-6xl md:text-8xl font-bold text-theater-gold mb-6 text-magic-glow group-hover:scale-105 transition-all duration-500 animate-mystical-float">
-              ШОУ СЕКРЕТ
-            </h1>
-            
-            {/* Magical Eye Symbol */}
-            <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-theater-burgundy to-theater-curtain rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 animate-glow-pulse">
-              <Eye className="w-8 h-8 text-theater-gold" />
+      {/* Main Content with Cinematic Transitions */}
+      <div className="relative z-10 text-center space-y-12 px-6">
+        <CinematicTransition delay={500} direction="zoom">
+          {/* Logo with Lock and Eye */}
+          <div 
+            className="cursor-pointer group"
+            onClick={handleLogoClick}
+          >
+            <div className="relative inline-block" style={getMouseParallax(5)}>
+              <h1 className="font-cinzel text-6xl md:text-8xl font-bold text-theater-gold mb-6 text-magic-glow group-hover:scale-105 transition-all duration-500 animate-mystical-float">
+                ШОУ СЕКРЕТ
+              </h1>
               
-              {/* Sparkles around eye */}
-              {[...Array(6)].map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute w-1 h-1 bg-theater-light-gold rounded-full animate-sparkle"
-                  style={{
-                    top: `${50 + 30 * Math.sin((i * Math.PI * 2) / 6)}%`,
-                    left: `${50 + 30 * Math.cos((i * Math.PI * 2) / 6)}%`,
-                    animationDelay: `${i * 0.5}s`
-                  }}
-                />
-              ))}
+              {/* Magical Eye Symbol */}
+              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-theater-burgundy to-theater-curtain rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 animate-glow-pulse">
+                <Eye className="w-8 h-8 text-theater-gold" />
+                
+                {/* Sparkles around eye */}
+                {[...Array(6)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-1 h-1 bg-theater-light-gold rounded-full animate-sparkle"
+                    style={{
+                      top: `${50 + 30 * Math.sin((i * Math.PI * 2) / 6)}%`,
+                      left: `${50 + 30 * Math.cos((i * Math.PI * 2) / 6)}%`,
+                      animationDelay: `${i * 0.5}s`
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </CinematicTransition>
 
-        {/* Enhanced Tagline */}
-        <div className="space-y-4">
-          <p className="font-inter text-2xl md:text-3xl text-theater-light-gold font-light tracking-wide max-w-3xl mx-auto leading-relaxed animate-float-slow">
-            Тайна, которую осмелишься увидеть
-          </p>
-          <div className="w-32 h-0.5 bg-gradient-gold mx-auto rounded-full"></div>
-        </div>
+        <CinematicTransition delay={800} direction="up">
+          {/* Enhanced Tagline */}
+          <div className="space-y-4">
+            <p className="font-inter text-2xl md:text-3xl text-theater-light-gold font-light tracking-wide max-w-3xl mx-auto leading-relaxed animate-float-slow">
+              Тайна, которую осмелишься увидеть
+            </p>
+            <div className="w-32 h-0.5 bg-gradient-gold mx-auto rounded-full animate-glow-pulse"></div>
+          </div>
+        </CinematicTransition>
 
-        {/* Enhanced Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16">
-          <TheaterButton 
-            variant="gold"
-            size="lg"
-            onClick={() => onSectionChange('schedule')}
-            className="min-w-56 theater-button-gold animate-glow-pulse"
-          >
-            Купить билет
-          </TheaterButton>
-          
-          <TheaterButton 
-            variant="burgundy"
-            size="lg"
-            onClick={() => onSectionChange('promo')}
-            className="min-w-56 hover:shadow-mystical transition-all duration-500"
-          >
-            <Play className="w-6 h-6 mr-3" />
-            Смотреть промо
-          </TheaterButton>
-        </div>
+        <CinematicTransition delay={1200} direction="up">
+          {/* Enhanced Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16">
+            <TheaterButton 
+              variant="gold"
+              size="lg"
+              onClick={() => onSectionChange('schedule')}
+              className="min-w-56 animate-morph"
+            >
+              Купить билет
+            </TheaterButton>
+            
+            <TheaterButton 
+              variant="burgundy"
+              size="lg"
+              onClick={() => onSectionChange('promo')}
+              className="min-w-56 hover:shadow-mystical transition-all duration-500"
+            >
+              <Play className="w-6 h-6 mr-3" />
+              Смотреть промо
+            </TheaterButton>
+          </div>
+        </CinematicTransition>
 
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8">
-          <TheaterButton 
-            variant="transparent"
-            onClick={() => onSectionChange('discount')}
-            className="hover:bg-theater-gold/10 transition-all duration-500"
-          >
-            <Gift className="w-5 h-5 mr-2" />
-            Получить скидку
-          </TheaterButton>
-          
-          <TheaterButton 
-            variant="transparent"
-            onClick={shareSecret}
-            className="hover:bg-theater-gold/10 transition-all duration-500"
-          >
-            <Share2 className="w-5 h-5 mr-2" />
-            Поделиться секретом
-          </TheaterButton>
-        </div>
+        <CinematicTransition delay={1500} direction="up">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8">
+            <TheaterButton 
+              variant="transparent"
+              onClick={() => onSectionChange('discount')}
+            >
+              <Gift className="w-5 h-5 mr-2" />
+              Получить скидку
+            </TheaterButton>
+            
+            <TheaterButton 
+              variant="transparent"
+              onClick={shareSecret}
+            >
+              <Share2 className="w-5 h-5 mr-2" />
+              Поделиться секретом
+            </TheaterButton>
+          </div>
+        </CinematicTransition>
       </div>
 
       {/* Enhanced Easter Egg Modal */}

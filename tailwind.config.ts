@@ -207,6 +207,35 @@ export default {
 				'float-slow': {
 					'0%, 100%': { transform: 'translateY(0px)' },
 					'50%': { transform: 'translateY(-20px)' }
+				},
+				'shimmer': {
+					'0%': { transform: 'translateX(-100%) skewX(-12deg)' },
+					'100%': { transform: 'translateX(200%) skewX(-12deg)' }
+				},
+				'morph': {
+					'0%': { 
+						borderRadius: '0.75rem',
+						transform: 'scale(1) rotate(0deg)'
+					},
+					'50%': { 
+						borderRadius: '2rem',
+						transform: 'scale(1.05) rotate(2deg)'
+					},
+					'100%': { 
+						borderRadius: '0.75rem',
+						transform: 'scale(1) rotate(0deg)'
+					}
+				},
+				'parallax-float': {
+					'0%, 100%': { 
+						transform: 'translateY(0px) translateX(0px) rotate(0deg)' 
+					},
+					'33%': { 
+						transform: 'translateY(-10px) translateX(5px) rotate(1deg)' 
+					},
+					'66%': { 
+						transform: 'translateY(5px) translateX(-3px) rotate(-0.5deg)' 
+					}
 				}
 			},
 			animation: {
@@ -224,7 +253,10 @@ export default {
 				'magic-pulse': 'magic-pulse 2s ease-in-out infinite',
 				'text-shimmer': 'text-shimmer 3s ease-in-out infinite',
 				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
-				'float-slow': 'float-slow 8s ease-in-out infinite'
+				'float-slow': 'float-slow 8s ease-in-out infinite',
+				'shimmer': 'shimmer 0.8s ease-out',
+				'morph': 'morph 4s ease-in-out infinite',
+				'parallax-float': 'parallax-float 10s ease-in-out infinite'
 			}
 		}
 	},
