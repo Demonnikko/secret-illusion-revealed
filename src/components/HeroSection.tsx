@@ -5,6 +5,8 @@ import MagicalTooltip from './MagicalTooltip';
 import { useParallax } from '@/hooks/useParallax';
 import { useMouseTracker } from '@/hooks/useMouseTracker';
 import { useTheaterToast } from '@/hooks/useTheaterToast';
+import { useTheaterSounds } from '@/hooks/useTheaterSounds';
+import { useHapticFeedback } from '@/hooks/useHapticFeedback';
 import CinematicTransition from './CinematicTransition';
 
 interface HeroSectionProps {
@@ -19,14 +21,22 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
   const { getParallaxProps } = useParallax();
   const { getMouseParallax } = useMouseTracker();
   const theaterToast = useTheaterToast();
+  const { playSound } = useTheaterSounds();
+  const { magical, heavy } = useHapticFeedback();
 
   const handleLogoClick = () => {
     const newClicks = easterEggClicks + 1;
     setEasterEggClicks(newClicks);
+    
+    // Play click sound and haptic feedback
+    playSound('click', { volume: 0.4 });
+    magical();
 
     if (newClicks === 5) {
-      // Trigger easter egg
+      // Trigger easter egg with special sound and haptic
       setShowEasterEgg(true);
+      playSound('whoosh', { volume: 0.6 });
+      heavy(); // Strong haptic for easter egg
       
       // Generate confetti
       const newConfetti = Array.from({ length: 50 }, (_, i) => ({

@@ -14,6 +14,8 @@ import InteractiveParticles from '@/components/InteractiveParticles';
 import CustomCursor from '@/components/CustomCursor';
 import AnimatedSection from '@/components/AnimatedSection';
 import ScrollProgress from '@/components/ScrollProgress';
+import AmbientSounds from '@/components/AmbientSounds';
+import SoundToggle from '@/components/SoundToggle';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { useResponsiveFonts } from '@/hooks/useResponsive';
 import { Toaster } from '@/components/ui/toaster';
@@ -41,6 +43,12 @@ const Index = () => {
       
       {/* Interactive Particles Layer */}
       <InteractiveParticles />
+      
+      {/* Ambient Theater Sounds */}
+      <AmbientSounds />
+      
+      {/* Sound Toggle Control */}
+      <SoundToggle />
       
       <Navigation onSectionChange={handleSectionChange} />
       

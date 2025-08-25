@@ -1,6 +1,8 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { useMouseTracker } from "@/hooks/useMouseTracker";
+import { useTheaterSounds } from "@/hooks/useTheaterSounds";
+import { useHapticFeedback } from "@/hooks/useHapticFeedback";
 
 interface BaseButtonProps {
   children: React.ReactNode;
@@ -56,6 +58,8 @@ const TheaterButton: React.FC<TheaterButtonProps> = ({
   onClick,
 }) => {
   const { getMouseTilt } = useMouseTracker();
+  const { playSound } = useTheaterSounds();
+  const { light, magical } = useHapticFeedback();
   const [isHovered, setIsHovered] = React.useState(false);
 
   const baseClasses = "inline-flex items-center justify-center whitespace-nowrap rounded-lg text-base font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative overflow-hidden group transform-gpu perspective-1000";
@@ -67,8 +71,27 @@ const TheaterButton: React.FC<TheaterButtonProps> = ({
     className
   );
 
-  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    playSound('sparkle', { volume: 0.2 });
+    light();
+  };
+
   const handleMouseLeave = () => setIsHovered(false);
+
+  const handleClick = (e: React.MouseEvent) => {
+    playSound('click', { volume: 0.3 });
+    
+    if (variant === 'gold') {
+      magical(); // Special haptic for gold buttons
+    } else {
+      light();
+    }
+    
+    if (onClick) {
+      onClick();
+    }
+  };
 
   const content = (
     <>
@@ -109,6 +132,7 @@ const TheaterButton: React.FC<TheaterButtonProps> = ({
         className={classes}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
         style={isHovered ? getMouseTilt(5) : undefined}
       >
         {content}
@@ -119,7 +143,7 @@ const TheaterButton: React.FC<TheaterButtonProps> = ({
   return (
     <button
       className={classes}
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       style={isHovered ? getMouseTilt(5) : undefined}

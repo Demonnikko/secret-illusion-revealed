@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Settings } from 'lucide-react';
+import { useTheaterSounds } from '@/hooks/useTheaterSounds';
+import { useHapticFeedback } from '@/hooks/useHapticFeedback';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -7,15 +9,24 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [isVisible, setIsVisible] = useState(true);
+  const { playSound } = useTheaterSounds();
+  const { curtainOpen } = useHapticFeedback();
 
   useEffect(() => {
+    // Play curtain opening sound
+    setTimeout(() => {
+      playSound('curtain', { volume: 0.4 });
+    }, 1000);
+
     const timer = setTimeout(() => {
       setIsVisible(false);
+      curtainOpen(); // Haptic feedback for curtain opening
+      playSound('whoosh', { volume: 0.3 });
       setTimeout(onComplete, 800); // Wait for curtain animation
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, [onComplete]);
+  }, [onComplete, playSound, curtainOpen]);
 
   return (
     <div className={`fixed inset-0 z-50 ${isVisible ? '' : 'pointer-events-none'}`}>
