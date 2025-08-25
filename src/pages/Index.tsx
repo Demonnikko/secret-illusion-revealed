@@ -13,11 +13,15 @@ import Footer from '@/components/Footer';
 import InteractiveParticles from '@/components/InteractiveParticles';
 import CustomCursor from '@/components/CustomCursor';
 import AnimatedSection from '@/components/AnimatedSection';
+import ScrollProgress from '@/components/ScrollProgress';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
+import { useResponsiveFonts } from '@/hooks/useResponsive';
+import { Toaster } from '@/components/ui/toaster';
 
 const Index = () => {
   const [showLoading, setShowLoading] = useState(true);
   const { scrollToSection } = useSmoothScroll();
+  const responsiveFontSize = useResponsiveFonts();
 
   const handleSectionChange = (section: string) => {
     scrollToSection(section);
@@ -28,7 +32,10 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black font-inter overflow-x-hidden relative">
+    <div className={`min-h-screen bg-black font-inter overflow-x-hidden relative text-${responsiveFontSize}`}>
+      {/* Scroll Progress Bar */}
+      <ScrollProgress />
+      
       {/* Custom Cursor */}
       <CustomCursor />
       
@@ -72,6 +79,9 @@ const Index = () => {
       </main>
       
       <Footer onSectionChange={handleSectionChange} />
+      
+      {/* Toast Notifications */}
+      <Toaster />
     </div>
   );
 };

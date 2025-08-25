@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Eye, Play, Gift, Share2 } from 'lucide-react';
 import TheaterButton from './TheaterButton';
+import MagicalTooltip from './MagicalTooltip';
 import { useParallax } from '@/hooks/useParallax';
 import { useMouseTracker } from '@/hooks/useMouseTracker';
+import { useTheaterToast } from '@/hooks/useTheaterToast';
 import CinematicTransition from './CinematicTransition';
 
 interface HeroSectionProps {
@@ -13,6 +15,10 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
   const [easterEggClicks, setEasterEggClicks] = useState(0);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
   const [confetti, setConfetti] = useState<Array<{ id: number; color: string; left: number; delay: number }>>([]);
+  
+  const { getParallaxProps } = useParallax();
+  const { getMouseParallax } = useMouseTracker();
+  const theaterToast = useTheaterToast();
 
   const handleLogoClick = () => {
     const newClicks = easterEggClicks + 1;
@@ -49,14 +55,12 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
 
     if (navigator.share && navigator.canShare(shareData)) {
       navigator.share(shareData);
+      theaterToast.success('Секрет поделен с миром! ✨');
     } else {
-      // Fallback - copy to clipboard
       navigator.clipboard.writeText(window.location.href);
+      theaterToast.success('Ссылка скопирована в буфер обмена! 🎭');
     }
   };
-
-  const { getParallaxProps, getParallaxScale } = useParallax();
-  const { getMouseParallax } = useMouseTracker();
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
@@ -138,27 +142,29 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
             onClick={handleLogoClick}
           >
             <div className="relative inline-block" style={getMouseParallax(5)}>
-              <h1 className="font-cinzel text-6xl md:text-8xl font-bold text-theater-gold mb-6 text-magic-glow group-hover:scale-105 transition-all duration-500 animate-mystical-float">
+              <h1 className="font-cinzel text-responsive-5xl font-bold text-theater-gold mb-6 text-magic-glow group-hover:scale-105 transition-all duration-500 animate-mystical-float">
                 ШОУ СЕКРЕТ
               </h1>
               
               {/* Magical Eye Symbol */}
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-theater-burgundy to-theater-curtain rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 animate-glow-pulse">
-                <Eye className="w-8 h-8 text-theater-gold" />
-                
-                {/* Sparkles around eye */}
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-1 h-1 bg-theater-light-gold rounded-full animate-sparkle"
-                    style={{
-                      top: `${50 + 30 * Math.sin((i * Math.PI * 2) / 6)}%`,
-                      left: `${50 + 30 * Math.cos((i * Math.PI * 2) / 6)}%`,
-                      animationDelay: `${i * 0.5}s`
-                    }}
-                  />
-                ))}
-              </div>
+              <MagicalTooltip content="Кликните 5 раз для открытия секретного послания!" position="top">
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-theater-burgundy to-theater-curtain rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 animate-glow-pulse hover:animate-micro-bounce">
+                  <Eye className="w-8 h-8 text-theater-gold" />
+                  
+                  {/* Sparkles around eye */}
+                  {[...Array(6)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-theater-light-gold rounded-full animate-sparkle"
+                      style={{
+                        top: `${50 + 30 * Math.sin((i * Math.PI * 2) / 6)}%`,
+                        left: `${50 + 30 * Math.cos((i * Math.PI * 2) / 6)}%`,
+                        animationDelay: `${i * 0.5}s`
+                      }}
+                    />
+                  ))}
+                </div>
+              </MagicalTooltip>
             </div>
           </div>
         </CinematicTransition>
@@ -166,7 +172,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
         <CinematicTransition delay={800} direction="up">
           {/* Enhanced Tagline */}
           <div className="space-y-4">
-            <p className="font-inter text-2xl md:text-3xl text-theater-light-gold font-light tracking-wide max-w-3xl mx-auto leading-relaxed animate-float-slow">
+            <p className="font-inter text-responsive-2xl text-theater-light-gold font-light tracking-wide max-w-3xl mx-auto leading-relaxed animate-float-slow">
               Тайна, которую осмелишься увидеть
             </p>
             <div className="w-32 h-0.5 bg-gradient-gold mx-auto rounded-full animate-glow-pulse"></div>
@@ -176,44 +182,54 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
         <CinematicTransition delay={1200} direction="up">
           {/* Enhanced Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-16">
-            <TheaterButton 
-              variant="gold"
-              size="lg"
-              onClick={() => onSectionChange('schedule')}
-              className="min-w-56 animate-morph"
-            >
-              Купить билет
-            </TheaterButton>
+            <MagicalTooltip content="Забронируйте места на волшебное представление">
+              <TheaterButton 
+                variant="gold"
+                size="lg"
+                onClick={() => onSectionChange('schedule')}
+                className="min-w-56 animate-morph hover:animate-micro-glow"
+              >
+                Купить билет
+              </TheaterButton>
+            </MagicalTooltip>
             
-            <TheaterButton 
-              variant="burgundy"
-              size="lg"
-              onClick={() => onSectionChange('promo')}
-              className="min-w-56 hover:shadow-mystical transition-all duration-500"
-            >
-              <Play className="w-6 h-6 mr-3" />
-              Смотреть промо
-            </TheaterButton>
+            <MagicalTooltip content="Посмотрите промо-видео нашего шоу">
+              <TheaterButton 
+                variant="burgundy"
+                size="lg"
+                onClick={() => onSectionChange('promo')}
+                className="min-w-56 hover:shadow-mystical transition-all duration-500 hover:animate-micro-wiggle"
+              >
+                <Play className="w-6 h-6 mr-3" />
+                Смотреть промо
+              </TheaterButton>
+            </MagicalTooltip>
           </div>
         </CinematicTransition>
 
         <CinematicTransition delay={1500} direction="up">
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8">
-            <TheaterButton 
-              variant="transparent"
-              onClick={() => onSectionChange('discount')}
-            >
-              <Gift className="w-5 h-5 mr-2" />
-              Получить скидку
-            </TheaterButton>
+            <MagicalTooltip content="Получите специальную скидку на билеты">
+              <TheaterButton 
+                variant="transparent"
+                onClick={() => onSectionChange('discount')}
+                className="hover:animate-micro-bounce"
+              >
+                <Gift className="w-5 h-5 mr-2" />
+                Получить скидку
+              </TheaterButton>
+            </MagicalTooltip>
             
-            <TheaterButton 
-              variant="transparent"
-              onClick={shareSecret}
-            >
-              <Share2 className="w-5 h-5 mr-2" />
-              Поделиться секретом
-            </TheaterButton>
+            <MagicalTooltip content="Поделитесь магией с друзьями">
+              <TheaterButton 
+                variant="transparent"
+                onClick={shareSecret}
+                className="hover:animate-micro-shake"
+              >
+                <Share2 className="w-5 h-5 mr-2" />
+                Поделиться секретом
+              </TheaterButton>
+            </MagicalTooltip>
           </div>
         </CinematicTransition>
       </div>
