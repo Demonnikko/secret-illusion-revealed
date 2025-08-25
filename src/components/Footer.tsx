@@ -1,5 +1,6 @@
 import { Phone, Send, Calendar, Users, MapPin } from 'lucide-react';
 import TheaterButton from './TheaterButton';
+import SparkleTrail from './SparkleTrail';
 
 interface FooterProps {
   onSectionChange: (section: string) => void;
@@ -40,45 +41,53 @@ const Footer = ({ onSectionChange }: FooterProps) => {
         </div>
         
         <div className="grid md:grid-cols-4 gap-6 mb-8">
-          <button
-            onClick={() => onSectionChange('schedule')}
-            className="flex items-center gap-3 p-4 bg-theater-stage/20 rounded-lg hover:bg-theater-gold/10 transition-colors group"
-          >
-            <Calendar className="w-5 h-5 text-theater-gold group-hover:scale-110 transition-transform" />
-            <span className="font-inter text-theater-light-gold group-hover:text-theater-gold transition-colors">
-              Афиша
-            </span>
-          </button>
+          <SparkleTrail>
+            <button
+              onClick={() => onSectionChange('schedule')}
+              className="flex items-center gap-3 p-4 bg-theater-stage/20 rounded-lg hover:bg-theater-gold/10 transition-all duration-300 group hover:scale-105 hover:shadow-gold-glow w-full"
+            >
+              <Calendar className="w-5 h-5 text-theater-gold group-hover:scale-110 transition-transform" />
+              <span className="font-inter text-theater-light-gold group-hover:text-theater-gold transition-colors">
+                Афиша
+              </span>
+            </button>
+          </SparkleTrail>
           
-          <button
-            onClick={() => onSectionChange('private')}
-            className="flex items-center gap-3 p-4 bg-theater-stage/20 rounded-lg hover:bg-theater-gold/10 transition-colors group"
-          >
-            <Users className="w-5 h-5 text-theater-gold group-hover:scale-110 transition-transform" />
-            <span className="font-inter text-theater-light-gold group-hover:text-theater-gold transition-colors">
-              Частные мероприятия
-            </span>
-          </button>
+          <SparkleTrail>
+            <button
+              onClick={() => onSectionChange('private')}
+              className="flex items-center gap-3 p-4 bg-theater-stage/20 rounded-lg hover:bg-theater-gold/10 transition-all duration-300 group hover:scale-105 hover:shadow-gold-glow w-full"
+            >
+              <Users className="w-5 h-5 text-theater-gold group-hover:scale-110 transition-transform" />
+              <span className="font-inter text-theater-light-gold group-hover:text-theater-gold transition-colors">
+                Частные мероприятия
+              </span>
+            </button>
+          </SparkleTrail>
           
-          <button
-            onClick={() => onSectionChange('contacts')}
-            className="flex items-center gap-3 p-4 bg-theater-stage/20 rounded-lg hover:bg-theater-gold/10 transition-colors group"
-          >
-            <MapPin className="w-5 h-5 text-theater-gold group-hover:scale-110 transition-transform" />
-            <span className="font-inter text-theater-light-gold group-hover:text-theater-gold transition-colors">
-              Контакты
-            </span>
-          </button>
+          <SparkleTrail>
+            <button
+              onClick={() => onSectionChange('contacts')}
+              className="flex items-center gap-3 p-4 bg-theater-stage/20 rounded-lg hover:bg-theater-gold/10 transition-all duration-300 group hover:scale-105 hover:shadow-gold-glow w-full"
+            >
+              <MapPin className="w-5 h-5 text-theater-gold group-hover:scale-110 transition-transform" />
+              <span className="font-inter text-theater-light-gold group-hover:text-theater-gold transition-colors">
+                Контакты
+              </span>
+            </button>
+          </SparkleTrail>
           
-          <button
-            onClick={shareSecret}
-            className="flex items-center gap-3 p-4 bg-theater-stage/20 rounded-lg hover:bg-theater-gold/10 transition-colors group"
-          >
-            <Send className="w-5 h-5 text-theater-gold group-hover:scale-110 transition-transform" />
-            <span className="font-inter text-theater-light-gold group-hover:text-theater-gold transition-colors">
-              Поделиться секретом
-            </span>
-          </button>
+          <SparkleTrail>
+            <button
+              onClick={shareSecret}
+              className="flex items-center gap-3 p-4 bg-theater-stage/20 rounded-lg hover:bg-theater-gold/10 transition-all duration-300 group hover:scale-105 hover:shadow-gold-glow w-full"
+            >
+              <Send className="w-5 h-5 text-theater-gold group-hover:scale-110 transition-transform" />
+              <span className="font-inter text-theater-light-gold group-hover:text-theater-gold transition-colors">
+                Поделиться секретом
+              </span>
+            </button>
+          </SparkleTrail>
         </div>
         
         <div className="text-center border-t border-theater-gold/20 pt-6">

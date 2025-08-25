@@ -11,32 +11,16 @@ import ContactsSection from '@/components/ContactsSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
 import InteractiveParticles from '@/components/InteractiveParticles';
+import CustomCursor from '@/components/CustomCursor';
+import AnimatedSection from '@/components/AnimatedSection';
+import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 
 const Index = () => {
   const [showLoading, setShowLoading] = useState(true);
-  const [currentSection, setCurrentSection] = useState('hero');
+  const { scrollToSection } = useSmoothScroll();
 
   const handleSectionChange = (section: string) => {
-    setCurrentSection(section);
-    
-    // Smooth scroll to section
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const renderSection = () => {
-    switch (currentSection) {
-      case 'about':
-        return <AboutSection />;
-      case 'reviews':
-        return <ReviewsSection />;
-      case 'schedule':
-        return <ScheduleSection />;
-      default:
-        return <HeroSection onSectionChange={handleSectionChange} />;
-    }
+    scrollToSection(section);
   };
 
   if (showLoading) {
@@ -45,43 +29,46 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-black font-inter overflow-x-hidden relative">
+      {/* Custom Cursor */}
+      <CustomCursor />
+      
       {/* Interactive Particles Layer */}
       <InteractiveParticles />
       
       <Navigation onSectionChange={handleSectionChange} />
       
       <main>
-        <div id="hero">
+        <AnimatedSection id="hero" animationType="fadeUp">
           <HeroSection onSectionChange={handleSectionChange} />
-        </div>
+        </AnimatedSection>
         
-        <div id="about">
+        <AnimatedSection id="about" animationType="fadeLeft" delay={200}>
           <AboutSection />
-        </div>
+        </AnimatedSection>
         
-        <div id="reviews">
+        <AnimatedSection id="reviews" animationType="zoom" delay={300}>
           <ReviewsSection />
-        </div>
+        </AnimatedSection>
         
-        <div id="schedule">
+        <AnimatedSection id="schedule" animationType="fadeUp" delay={100}>
           <ScheduleSection />
-        </div>
+        </AnimatedSection>
         
-        <div id="private">
+        <AnimatedSection id="private" animationType="fadeRight" delay={200}>
           <PrivateEventsSection />
-        </div>
+        </AnimatedSection>
         
-        <div id="school">
+        <AnimatedSection id="school" animationType="rotate" delay={150}>
           <SchoolSection />
-        </div>
+        </AnimatedSection>
         
-        <div id="contacts">
+        <AnimatedSection id="contacts" animationType="fadeUp" delay={100}>
           <ContactsSection />
-        </div>
+        </AnimatedSection>
         
-        <div id="faq">
+        <AnimatedSection id="faq" animationType="fadeLeft" delay={200}>
           <FAQSection />
-        </div>
+        </AnimatedSection>
       </main>
       
       <Footer onSectionChange={handleSectionChange} />

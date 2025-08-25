@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import TheaterButton from './TheaterButton';
+import SparkleTrail from './SparkleTrail';
 
 interface NavigationProps {
   onSectionChange: (section: string) => void;
@@ -26,13 +27,20 @@ const Navigation = ({ onSectionChange }: NavigationProps) => {
 
   return (
     <>
-      {/* Menu Toggle */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed top-6 right-6 z-50 p-3 bg-theater-burgundy/90 backdrop-blur-sm rounded-full text-theater-gold hover:bg-theater-burgundy transition-colors"
-      >
-        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-      </button>
+      {/* Menu Toggle with Sparkle Effect */}
+      <SparkleTrail>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="fixed top-6 right-6 z-50 p-3 bg-theater-burgundy/90 backdrop-blur-sm rounded-full text-theater-gold hover:bg-theater-burgundy transition-all duration-300 hover:scale-110 hover:shadow-gold-glow group"
+        >
+          <div className="relative">
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            
+            {/* Rotating border on hover */}
+            <div className="absolute inset-0 border-2 border-theater-gold/30 rounded-full group-hover:border-theater-gold group-hover:animate-spin opacity-0 group-hover:opacity-100 transition-all duration-300" />
+          </div>
+        </button>
+      </SparkleTrail>
 
       {/* Overlay */}
       {isOpen && (
@@ -52,14 +60,18 @@ const Navigation = ({ onSectionChange }: NavigationProps) => {
           </h2>
           
           <nav className="space-y-4">
-            {menuItems.map((item) => (
-              <button
-                key={item.section}
-                onClick={() => handleItemClick(item.section)}
-                className="block w-full text-left font-inter text-lg text-theater-light-gold hover:text-theater-gold transition-colors py-3 px-4 rounded-lg hover:bg-theater-burgundy/30"
-              >
-                {item.label}
-              </button>
+            {menuItems.map((item, index) => (
+              <SparkleTrail key={item.section}>
+                <button
+                  onClick={() => handleItemClick(item.section)}
+                  className="block w-full text-left font-inter text-lg text-theater-light-gold hover:text-theater-gold transition-all duration-300 py-3 px-4 rounded-lg hover:bg-theater-burgundy/30 hover:scale-105 hover:shadow-gold-glow group relative overflow-hidden"
+                >
+                  <span className="relative z-10">{item.label}</span>
+                  
+                  {/* Slide-in effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-theater-gold/10 to-theater-gold/5 translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300" />
+                </button>
+              </SparkleTrail>
             ))}
           </nav>
 
