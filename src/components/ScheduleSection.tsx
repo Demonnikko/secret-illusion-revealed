@@ -104,32 +104,6 @@ const ScheduleSection = () => {
           ))}
         </div>
 
-        {/* Show Info Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
-          <div className="text-center p-6 bg-theater-burgundy/20 rounded-xl border border-theater-gold/20">
-            <div className="w-12 h-12 bg-theater-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Clock className="w-6 h-6 text-theater-gold" />
-            </div>
-            <h3 className="font-cinzel text-lg text-theater-gold mb-2">Продолжительность</h3>
-            <p className="font-inter text-theater-light-gold text-sm">2 часа + антракт</p>
-          </div>
-
-          <div className="text-center p-6 bg-theater-burgundy/20 rounded-xl border border-theater-gold/20">
-            <div className="w-12 h-12 bg-theater-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-xl">🎭</span>
-            </div>
-            <h3 className="font-cinzel text-lg text-theater-gold mb-2">Возраст</h3>
-            <p className="font-inter text-theater-light-gold text-sm">18+</p>
-          </div>
-
-          <div className="text-center p-6 bg-theater-burgundy/20 rounded-xl border border-theater-gold/20 sm:col-span-2 lg:col-span-1">
-            <div className="w-12 h-12 bg-theater-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-xl">✨</span>
-            </div>
-            <h3 className="font-cinzel text-lg text-theater-gold mb-2">Жанр</h3>
-            <p className="font-inter text-theater-light-gold text-sm">Иллюзионное шоу</p>
-          </div>
-        </div>
       </div>
     </div>
   );
