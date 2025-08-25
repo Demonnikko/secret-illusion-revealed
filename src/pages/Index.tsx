@@ -35,8 +35,8 @@ const Index = () => {
       
       {/* Falling Particles System - reduced for mobile */}
       <ParticleSystem 
-        density={10} 
-        types={['star']} 
+        density={0} 
+        types={[]} 
       />
       
       <Navigation onSectionChange={handleSectionChange} />
