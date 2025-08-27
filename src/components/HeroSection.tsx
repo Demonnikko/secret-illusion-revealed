@@ -71,7 +71,7 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
   };
 
   return (
-    <div className="relative min-h-screen-safe flex flex-col items-center justify-center bg-black overflow-hidden pt-safe pb-safe pl-safe pr-safe">
+    <div className="relative min-h-screen flex flex-col items-center justify-center bg-black overflow-hidden">
       {/* Magic Particles Background with Parallax */}
       <div 
         className="absolute inset-0 magic-particles"
@@ -283,8 +283,8 @@ const HeroSection = ({ onSectionChange }: HeroSectionProps) => {
 
       {/* Enhanced Easter Egg Modal */}
       {showEasterEgg && (
-        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 animate-fade-in-up backdrop-blur-sm pt-safe pb-safe pl-safe pr-safe">
-          <div className="bg-gradient-to-br from-theater-curtain via-theater-burgundy to-theater-curtain p-4 md:p-10 rounded-2xl max-w-3xl mx-4 md:mx-6 text-center border-2 border-theater-gold/50 shadow-mystical relative overflow-hidden">
+        <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 animate-fade-in-up backdrop-blur-sm">
+          <div className="bg-gradient-to-br from-theater-curtain via-theater-burgundy to-theater-curtain p-10 rounded-2xl max-w-3xl mx-6 text-center border-2 border-theater-gold/50 shadow-mystical relative overflow-hidden">
             {/* Magical background effect */}
             <div className="absolute inset-0 magic-particles opacity-50"></div>
             
